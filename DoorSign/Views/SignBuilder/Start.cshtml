@@ -15,12 +15,6 @@
         <form asp-action="SavePerson">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TemplateType" class="control-label"></label>
-
-                @Html.DropDownList("TemplateType", new SelectList(Enum.GetValues(typeof(TemplateTypes))), "---");
-                <span asp-validation-for="TemplateType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="@Model.Employees[0].Department" class="control-label"></label>
                 @Html.DropDownList("Department", new SelectList(Enum.GetValues(typeof(Departments))), "---");
                 <span asp-validation-for="@Model.Employees[0].Department" class="text-danger"></span>

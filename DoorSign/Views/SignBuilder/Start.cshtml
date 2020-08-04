@@ -1,0 +1,71 @@
+﻿@model DoorSign.Models.TemplateModel
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Start</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+
+
+        <form asp-action="SavePerson">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TemplateType" class="control-label"></label>
+
+                @Html.DropDownList("TemplateType", new SelectList(Enum.GetValues(typeof(TemplateTypes))), "---");
+                <span asp-validation-for="TemplateType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Employees[0].Department" class="control-label"></label>
+                @Html.DropDownList("Department", new SelectList(Enum.GetValues(typeof(Departments))), "---");
+                <span asp-validation-for="@Model.Employees[0].Department" class="text-danger"></span>
+            </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Employee Information</div>
+                <div class="panel-body">
+
+
+                    <div id="EmployeeSection">
+
+                        <button type="button" id="AddPerson" class="btn btn-secondary">Add Person</button>
+                        <button type="button" id="RemovePerson" class="btn btn-danger">Remove Person</button>
+
+                        @for (var i = 0; i < Model.Employees.Count; i++)
+                        {
+                            <div class="row @i">
+                                <div class="col">
+                                    <input asp-for="@Model.Employees[i].FirstName" class="form-control" placeholder="First Name" />
+                                    <span asp-validation-for="@Model.Employees[i].FirstName" class="text-danger"></span>
+
+                                </div>
+                                <div class="col">
+                                    <input asp-for="@Model.Employees[i].LastName" class="form-control" placeholder="Last Name" />
+                                    <span asp-validation-for="@Model.Employees[i].LastName" class="text-danger"></span>
+
+                                </div>
+                                <div class="col">
+                                    <input asp-for="@Model.Employees[i].Title" class="form-control" placeholder="Title" />
+                                    <span asp-validation-for="@Model.Employees[i].Title" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                    <input type="hidden" id="totalEmployees" name="totalEmployees" value="@Model.Employees.Count" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

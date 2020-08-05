@@ -48,7 +48,7 @@ namespace DoorSign.Models
         }
 
 
-        string FindDepartment(List<Person> personList)
+        string FindDepartment(List<PersonOffice> personList)
         {
             string s = personList[0].Department.ToString();
             s = s.Replace("_", " ");
@@ -56,7 +56,7 @@ namespace DoorSign.Models
         }
 
 
-        public static string FindTemplateOffice(List<Person> personList)
+        public static string FindTemplateOffice(List<PersonOffice> personList)
         {
             int length = personList.Count;
             TemplatesOffice template = (TemplatesOffice)length;
@@ -74,7 +74,7 @@ namespace DoorSign.Models
         }
 
 
-        public void CreateSignOffice(List<Person> personList)
+        public void CreateSignOffice(List<PersonOffice> personList)
         {
             string templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\" + FindTemplateOffice(personList) + ".docx";
             string name = "test2.docx";

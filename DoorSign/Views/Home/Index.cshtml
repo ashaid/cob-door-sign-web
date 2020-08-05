@@ -2,7 +2,20 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Are you ready for your door sign?</h1>
-    <p>What are you waiting for,  <a class="btn btn-primary" asp-action="Start" asp-controller="SignBuilder" asp-route-numEmployees="1">Start Here</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Select Template Type</h1>
+        
+        <div class="btn-group" role="group" aria-label="Button select">
+            <div>
+                <a class="btn btn-primary" asp-action="Office" asp-controller="SignBuilder" asp-route-numEmployees="1">Office Sign</a>
+            </div>
+            <div>
+                <a class="btn btn-primary" asp-action="Cubicle" asp-controller="SignBuilder" asp-route-numEmployees="1">Cubicle Sign</a>
+            </div>
+            <div>
+                <a class="btn btn-primary" asp-action="Start" asp-controller="SignBuilder" asp-route-numEmployees="1">Misc. Sign</a>
+            </div>
+        </div>
+
+
+    </div>

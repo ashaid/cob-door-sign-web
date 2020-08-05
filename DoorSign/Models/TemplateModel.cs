@@ -8,16 +8,16 @@ namespace DoorSign.Models
 {
     public class TemplateModel
     {
-        public List<Person> Employees { get; set; }
+        public List<PersonOffice> Employees { get; set; }
 
         public TemplateTypes TemplateType { get; set; }
 
 
         public TemplateModel()
         {
-            Employees = new List<Person>();
+            Employees = new List<PersonOffice>();
         }
-        public void AddEmployee(Person newPerson)
+        public void AddEmployee(PersonOffice newPerson)
         {
             Employees.Add(newPerson);
 

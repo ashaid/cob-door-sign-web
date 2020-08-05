@@ -14,6 +14,7 @@ namespace DoorSign.Models
         [Required(ErrorMessage = "Please enter a last name.")]
 
         public string LastName { get; set; }
+
         [Required(ErrorMessage = "Please enter a title.")]
         public string Title { get; set; }
 

@@ -1,11 +1,11 @@
 ﻿@model DoorSign.Models.TemplateModel
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Office";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Start</h1>
+<h1>Office</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -46,6 +46,16 @@
                                 <div class="col">
                                     <input asp-for="@Model.Employees[i].Title" class="form-control" placeholder="Title" />
                                     <span asp-validation-for="@Model.Employees[i].Title" class="text-danger"></span>
+                                </div> 
+
+                                <div class="col">
+                                    <input asp-for="@Model.Employees[i].SecondTitle" class="form-control" placeholder="Second Title" />
+                                    <span asp-validation-for="@Model.Employees[i].SecondTitle" class="text-danger"></span>
+                                </div>
+
+                                <div class="col">
+                                    <input asp-for="@Model.Employees[i].Professorship" class="form-control" placeholder="Professorship" />
+                                    <span asp-validation-for="@Model.Employees[i].Professorship" class="text-danger"></span>
                                 </div>
                             </div>
 

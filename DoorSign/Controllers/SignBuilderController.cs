@@ -12,19 +12,33 @@ namespace DoorSign.Controllers
     public class SignBuilderController : Controller
     {
         [HttpGet]
-        public ViewResult Start(int? numEmployees)
+        public ViewResult Office(int? numEmployees)
         {
             TemplateModel templateModel = new TemplateModel();
 
 
             while (numEmployees > 0)
             {
-                Person p = new Person();
+                PersonOffice p = new PersonOffice();
                 templateModel.AddEmployee(p);
                 numEmployees -= 1;
             }
-            return View("Start",templateModel);
+            return View("Office",templateModel);
         }
+
+        public ViewResult Cubicle(int? numEmployees)
+        {
+            TemplateModel templateModel = new TemplateModel();
+
+            while (numEmployees > 0)
+            {
+                PersonOffice p = new PersonOffice();
+                templateModel.AddEmployee(p);
+                numEmployees -= 1;
+            }
+            return View("Cubicle", templateModel);
+        }
+
         [HttpPost]
         public ViewResult SavePerson(TemplateModel templateModel)
         {
@@ -38,7 +52,7 @@ namespace DoorSign.Controllers
 
                 util.CreateSignOffice(templateModel.Employees);
 
-                string filen = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + "test2.pdf";
+                string filen = @"~\wwwroot\templates\" + "test2.pdf";
 
                 ViewBag.PDFUrl = filen;
                 return View("Results");
@@ -46,7 +60,7 @@ namespace DoorSign.Controllers
             else
             {
                 ModelState.AddModelError("", "Please correct the highlighted error below.");
-                return View("Start", templateModel);
+                return View("Office", templateModel);
             }
 
 

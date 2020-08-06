@@ -1,23 +1,30 @@
-﻿@model DoorSign.Models.TemplateModel
+﻿@model DoorSign.Models.TemplateModelOffice
 
 @{
     ViewData["Title"] = "Office";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section HeadSection {
+    <script src="~/js/office.js" asp-append-version="true"></script>
+}
 <h1>Office</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div>
 
 
 
-        <form asp-action="SavePerson">
+        <form asp-action="SavePersonOffice">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="@Model.Employees[0].Department" class="control-label"></label>
+                <label asp-for="@Model.EmployeesOffice[0].Department" class="control-label"></label>
                 @Html.DropDownList("Department", new SelectList(Enum.GetValues(typeof(Departments))), "---");
-                <span asp-validation-for="@Model.Employees[0].Department" class="text-danger"></span>
+                <span asp-validation-for="@Model.EmployeesOffice[0].Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="@Model.EmployeesOffice[0].RoomNumber" class="form-control" placeholder="Room Number" />
+                <span asp-validation-for="@Model.EmployeesOffice[0].RoomNumber" class="text-danger"></span>
+
             </div>
             <div class="panel panel-default">
                 <!-- Default panel contents -->
@@ -30,38 +37,38 @@
                         <button type="button" id="AddPerson" class="btn btn-secondary">Add Person</button>
                         <button type="button" id="RemovePerson" class="btn btn-danger">Remove Person</button>
 
-                        @for (var i = 0; i < Model.Employees.Count; i++)
+                        @for (var i = 0; i < Model.EmployeesOffice.Count; i++)
                         {
                             <div class="row @i">
                                 <div class="col">
-                                    <input asp-for="@Model.Employees[i].FirstName" class="form-control" placeholder="First Name" />
-                                    <span asp-validation-for="@Model.Employees[i].FirstName" class="text-danger"></span>
+                                    <input asp-for="@Model.EmployeesOffice[i].FirstName" class="form-control" placeholder="First Name" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].FirstName" class="text-danger"></span>
 
                                 </div>
                                 <div class="col">
-                                    <input asp-for="@Model.Employees[i].LastName" class="form-control" placeholder="Last Name" />
-                                    <span asp-validation-for="@Model.Employees[i].LastName" class="text-danger"></span>
+                                    <input asp-for="@Model.EmployeesOffice[i].LastName" class="form-control" placeholder="Last Name" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].LastName" class="text-danger"></span>
 
                                 </div>
                                 <div class="col">
-                                    <input asp-for="@Model.Employees[i].Title" class="form-control" placeholder="Title" />
-                                    <span asp-validation-for="@Model.Employees[i].Title" class="text-danger"></span>
-                                </div> 
-
-                                <div class="col">
-                                    <input asp-for="@Model.Employees[i].SecondTitle" class="form-control" placeholder="Second Title" />
-                                    <span asp-validation-for="@Model.Employees[i].SecondTitle" class="text-danger"></span>
+                                    <input asp-for="@Model.EmployeesOffice[i].Title" class="form-control" placeholder="Title" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].Title" class="text-danger"></span>
                                 </div>
 
                                 <div class="col">
-                                    <input asp-for="@Model.Employees[i].Professorship" class="form-control" placeholder="Professorship" />
-                                    <span asp-validation-for="@Model.Employees[i].Professorship" class="text-danger"></span>
+                                    <input asp-for="@Model.EmployeesOffice[i].SecondTitle" class="form-control" placeholder="Second Title" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].SecondTitle" class="text-danger"></span>
+                                </div>
+
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesOffice[i].Professorship" class="form-control" placeholder="Professorship" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].Professorship" class="text-danger"></span>
                                 </div>
                             </div>
 
                         }
                     </div>
-                    <input type="hidden" id="totalEmployees" name="totalEmployees" value="@Model.Employees.Count" />
+                    <input type="hidden" id="totalEmployees" name="totalEmployees" value="@Model.EmployeesOffice.Count" />
                 </div>
             </div>
             <div class="form-group">

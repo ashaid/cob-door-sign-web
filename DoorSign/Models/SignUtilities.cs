@@ -6,7 +6,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using Aspose;
-
+using System.IO;
 
 namespace DoorSign.Models
 {
@@ -48,7 +48,14 @@ namespace DoorSign.Models
         }
 
 
-        string FindDepartment(List<PersonOffice> personList)
+        string FindDepartmentOffice(List<PersonOffice> personList)
+        {
+            string s = personList[0].Department.ToString();
+            s = s.Replace("_", " ");
+            return s;
+        }
+
+        string FindDepartmentCubicle(List<PersonCubicle> personList)
         {
             string s = personList[0].Department.ToString();
             s = s.Replace("_", " ");
@@ -73,6 +80,21 @@ namespace DoorSign.Models
             Office_Two_PhD_Students_Template,
         }
 
+        public static string FindTemplateCubicle(List<PersonCubicle> personList)
+        {
+            int length = personList.Count;
+            TemplatesCubicle template = (TemplatesCubicle)length;
+            return template.ToString();
+        }
+
+        enum TemplatesCubicle
+        {
+            Cubicle_One_Person_Template = 1,
+            Cubicle_Two_People_Template = 10,
+            Cubicle_Three_People_Template = 15,
+            Office_One_Person_with_Two_Titles_Template = 20,
+        }
+
 
         public void CreateSignOffice(List<PersonOffice> personList)
         {
@@ -88,41 +110,46 @@ namespace DoorSign.Models
                 WordReplace("Title" + count, person.Title, name);
                 count++;
             }
-            WordReplace("Department", FindDepartment(personList), name);
+            WordReplace("Department", FindDepartmentOffice(personList), name);
 
             Aspose.Words.Document doc = new Aspose.Words.Document(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + name);
             doc.Save(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + "test2.pdf");
 
         }
 
-        //void CreateSignCubicle(List<TemplatePersonCubicle> personList, string department)
-        //{
-        //    string templateName = @"D:\c sharp\door-sign\Cubicles\" + TemplatePersonCubicle.FindTemplate(personList) + ".docx";
-        //    string name = "test2.docx";
-        //    CloneDocumentTemplate(templateName, name);
+        public string  CreateSignCubicle(List<PersonCubicle> personList)
+        {
+            string templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\" + FindTemplateCubicle(personList) + ".docx";
+            string name = "test2.docx";
+            CloneDocumentTemplate(templateName, name);
 
-        //    int count = personList.Count;
-        //    foreach (TemplatePersonCubicle person in personList)
-        //    {
-        //        Console.WriteLine(count);
-        //        if (count > 9)
-        //        {
-        //            WordReplace(count + "First", personList[count - 1].FirstName, name);
-        //            WordReplace(count + "Last", personList[count - 1].LastName, name);
-        //            WordReplace(count + "Title", personList[count - 1].Title, name);
-        //            WordReplace(count + "L", personList[count - 1].Letter, name);
-        //        }
-        //        else
-        //        {
-        //            WordReplace("First" + count, personList[count - 1].FirstName, name);
-        //            WordReplace("Last" + count, personList[count - 1].LastName, name);
-        //            WordReplace("Title" + count, personList[count - 1].Title, name);
-        //            WordReplace("L" + count, personList[count - 1].Letter, name);
-        //        }
+            int count = personList.Count;
+            foreach (PersonCubicle person in personList)
+            {
+                Console.WriteLine(count);
+                if (count > 9)
+                {
+                    WordReplace(count + "First", personList[count - 1].FirstName, name);
+                    WordReplace(count + "Last", personList[count - 1].LastName, name);
+                    WordReplace(count + "Title", personList[count - 1].Title, name);
+                    WordReplace(count + "L", personList[count - 1].Letter, name);
+                }
+                else
+                {
+                    WordReplace("First" + count, personList[count - 1].FirstName, name);
+                    WordReplace("Last" + count, personList[count - 1].LastName, name);
+                    WordReplace("Title" + count, personList[count - 1].Title, name);
+                    WordReplace("L" + count, personList[count - 1].Letter, name);
+                }
 
-        //        count--;
-        //    }
-        //    WordReplace("Department", department, name);
-        //}
+                count--;
+            }
+            WordReplace("Department", FindDepartmentCubicle(personList), name);
+
+            Aspose.Words.Document doc = new Aspose.Words.Document(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + name);
+            string fileName = "test2.pdf";
+            doc.Save(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + fileName);
+            return fileName;
+        }
     }
 }

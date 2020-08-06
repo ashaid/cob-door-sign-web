@@ -14,33 +14,34 @@ namespace DoorSign.Controllers
         [HttpGet]
         public ViewResult Office(int? numEmployees)
         {
-            TemplateModel templateModel = new TemplateModel();
+            TemplateModelOffice templateModel = new TemplateModelOffice();
 
 
             while (numEmployees > 0)
             {
                 PersonOffice p = new PersonOffice();
-                templateModel.AddEmployee(p);
+                templateModel.AddEmployeeOffice(p);
                 numEmployees -= 1;
             }
             return View("Office",templateModel);
         }
 
+        [HttpGet]
         public ViewResult Cubicle(int? numEmployees)
         {
-            TemplateModel templateModel = new TemplateModel();
+            TemplateModelCubicle templateModel = new TemplateModelCubicle();
 
             while (numEmployees > 0)
             {
-                PersonOffice p = new PersonOffice();
-                templateModel.AddEmployee(p);
+                PersonCubicle p = new PersonCubicle();
+                templateModel.AddEmployeeCubicle(p);
                 numEmployees -= 1;
             }
             return View("Cubicle", templateModel);
         }
 
         [HttpPost]
-        public ViewResult SavePerson(TemplateModel templateModel)
+        public ViewResult SavePersonOffice(TemplateModelOffice templateModel)
         {
             if (ModelState.IsValid)
             {
@@ -49,9 +50,17 @@ namespace DoorSign.Controllers
                 //add the url for the PDF here so they can download it
 
                 SignUtilities util = new SignUtilities();
-
-                util.CreateSignOffice(templateModel.Employees);
-
+                
+                Console.WriteLine("hi");
+                Console.WriteLine(templateModel.GetType().ToString());
+                try
+                {
+                    util.CreateSignOffice(templateModel.EmployeesOffice);
+                }
+                catch
+                {
+                    
+                }
                 string filen = @"~\wwwroot\templates\" + "test2.pdf";
 
                 ViewBag.PDFUrl = filen;
@@ -61,6 +70,39 @@ namespace DoorSign.Controllers
             {
                 ModelState.AddModelError("", "Please correct the highlighted error below.");
                 return View("Office", templateModel);
+            }
+
+
+        }
+        [HttpPost]
+        public ViewResult SavePersonCubicle(TemplateModelCubicle templateModel)
+        {
+            if (ModelState.IsValid)
+            {
+                //Put your code here to use data to generate the tamplate
+                // create a pdf from the generated template
+                //add the url for the PDF here so they can download it
+
+                SignUtilities util = new SignUtilities();
+                try
+                {
+                   string fileName =  util.CreateSignCubicle(templateModel.EmployeesCubicle);
+                    TempData["GeneratedFile"] = fileName;
+                   
+                }
+                catch
+                {
+
+                }
+                string filen = @"~\wwwroot\templates\" + "test2.pdf";
+
+                ViewBag.PDFUrl = filen;
+                return View("Results");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please correct the highlighted error below.");
+                return View("Cubicle", templateModel);
             }
 
 

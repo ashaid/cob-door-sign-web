@@ -55,15 +55,13 @@ namespace DoorSign.Controllers
                 Console.WriteLine(templateModel.GetType().ToString());
                 try
                 {
-                    util.CreateSignOffice(templateModel.EmployeesOffice);
+                    string fileName = util.CreateSignOffice(templateModel.EmployeesOffice);
+                    TempData["GeneratedFile"] = fileName;
                 }
                 catch
                 {
                     
                 }
-                string filen = @"~\wwwroot\templates\" + "test2.pdf";
-
-                ViewBag.PDFUrl = filen;
                 return View("Results");
             }
             else
@@ -87,7 +85,7 @@ namespace DoorSign.Controllers
                 try
                 {
                    string fileName =  util.CreateSignCubicle(templateModel.EmployeesCubicle);
-                    TempData["GeneratedFile"] = fileName;
+                   TempData["GeneratedFile"] = fileName;
                    
                 }
                 catch

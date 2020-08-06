@@ -63,7 +63,7 @@ namespace DoorSign.Models
         }
 
 
-        public static string FindTemplateOffice(List<PersonOffice> personList)
+        public string FindTemplateOffice(List<PersonOffice> personList)
         {
             int length = personList.Count;
             TemplatesOffice template = (TemplatesOffice)length;
@@ -80,7 +80,7 @@ namespace DoorSign.Models
             Office_Two_PhD_Students_Template,
         }
 
-        public static string FindTemplateCubicle(List<PersonCubicle> personList)
+        public string FindTemplateCubicle(List<PersonCubicle> personList)
         {
             int length = personList.Count;
             TemplatesCubicle template = (TemplatesCubicle)length;
@@ -96,7 +96,7 @@ namespace DoorSign.Models
         }
 
 
-        public void CreateSignOffice(List<PersonOffice> personList)
+        public string CreateSignOffice(List<PersonOffice> personList)
         {
             string templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\" + FindTemplateOffice(personList) + ".docx";
             string name = "test2.docx";
@@ -111,10 +111,10 @@ namespace DoorSign.Models
                 count++;
             }
             WordReplace("Department", FindDepartmentOffice(personList), name);
+            WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
-            Aspose.Words.Document doc = new Aspose.Words.Document(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + name);
-            doc.Save(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + "test2.pdf");
-
+            string fileName = "test2.docx";
+            return fileName;
         }
 
         public string  CreateSignCubicle(List<PersonCubicle> personList)
@@ -145,6 +145,7 @@ namespace DoorSign.Models
                 count--;
             }
             WordReplace("Department", FindDepartmentCubicle(personList), name);
+            WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
             Aspose.Words.Document doc = new Aspose.Words.Document(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + name);
             string fileName = "test2.pdf";

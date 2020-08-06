@@ -5,7 +5,6 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.ExtendedProperties;
-using Aspose;
 using System.IO;
 
 namespace DoorSign.Models
@@ -147,9 +146,7 @@ namespace DoorSign.Models
             WordReplace("Department", FindDepartmentCubicle(personList), name);
             WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
-            Aspose.Words.Document doc = new Aspose.Words.Document(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + name);
             string fileName = "test2.pdf";
-            doc.Save(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + fileName);
             return fileName;
         }
     }

@@ -2,20 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="text-center">
-        <h1 class="display-4">Select Template Type</h1>
-        
-        <div class="btn-group" role="group" aria-label="Button select">
+<div class="text-center">
+    <h1 class="display-4">E. J. Ourso COB Door Sign Builder</h1>
+    <p class="lead">This tool was created by External Relations. If you have any questions please email us at oursowebmaster@lsu.edu</p>
+    <h2>Please select your desired sign type.</h2>
+
+    <div class="btn-group btn-group-lg" role="group" aria-label="Button select">
+        <div class="btn-group mr-lg-3" role="group" aria-label="First group">
             <div>
                 <a class="btn btn-primary" asp-action="Office" asp-controller="SignBuilder" asp-route-numEmployees="1">Office Sign</a>
             </div>
+        </div>
+        <div class="btn-group mr-lg-3" role="group" aria-label="Second group">
             <div>
                 <a class="btn btn-primary" asp-action="Cubicle" asp-controller="SignBuilder" asp-route-numEmployees="1">Cubicle Sign</a>
             </div>
+        </div>
+        <div class="btn-group mr-lg-3" role="group" aria-label="First group">
             <div>
                 <a class="btn btn-primary" asp-action="Start" asp-controller="SignBuilder" asp-route-numEmployees="1">Misc. Sign</a>
             </div>
         </div>
-
-
     </div>
+</div>

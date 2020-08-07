@@ -40,6 +40,13 @@
                 @Html.DropDownList("Department", new SelectList(Enum.GetValues(typeof(Departments))), "---");
                 <span asp-validation-for="@Model.EmployeesCubicle[0].Department" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.EmployeesCubicle[0].AmtName" class="control-label"></label>
+                @Html.DropDownList("Cube Type", new SelectList(Enum.GetValues(typeof(PersonCubicle.CubeType))), "---");
+                <span asp-validation-for="@Model.EmployeesCubicle[0].AmtName" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input asp-for="@Model.EmployeesCubicle[0].RoomNumber" class="form-control" placeholder="Room Number" />
                 <span asp-validation-for="@Model.EmployeesCubicle[0].RoomNumber" class="text-danger"></span>
@@ -77,6 +84,8 @@
                                     <input asp-for="@Model.EmployeesCubicle[i].Letter" class="form-control" placeholder="Letter" />
                                     <span asp-validation-for="@Model.EmployeesCubicle[i].Letter" class="text-danger"></span>
                                 </div>
+                                <div class="form-group">
+                                </div>
                             </div>
 
                         }
@@ -85,7 +94,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary btn-lg btn-block" />
             </div>
         </form>
     </div>

@@ -10,5 +10,16 @@ namespace DoorSign.Models
     {
         [Required(ErrorMessage = "Please enter a letter.")]
         public string Letter { get; set; }
+
+        [Required(ErrorMessage = "Please select how many names on one sign.")]
+        public CubeType AmtName { get; set; }
+
+        public enum CubeType
+        {
+            One,
+            Two,
+            Three
+        }
+        
     }
 }

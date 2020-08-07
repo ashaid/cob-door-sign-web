@@ -79,22 +79,6 @@ namespace DoorSign.Models
             Office_Two_PhD_Students_Template,
         }
 
-        public string FindTemplateCubicle(List<PersonCubicle> personList)
-        {
-            int length = personList.Count;
-            TemplatesCubicle template = (TemplatesCubicle)length;
-            return template.ToString();
-        }
-
-        enum TemplatesCubicle
-        {
-            Cubicle_One_Person_Template = 1,
-            Cubicle_Two_People_Template = 10,
-            Cubicle_Three_People_Template = 15,
-            Office_One_Person_with_Two_Titles_Template = 20,
-        }
-
-
         public string CreateSignOffice(List<PersonOffice> personList)
         {
             string templateName = "";
@@ -120,8 +104,10 @@ namespace DoorSign.Models
             }
 
             WordReplace("Department", FindDepartmentOffice(personList), name);
-            WordReplace("Professorship", personList[0].Professorship, name);
             WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
+
+            WordReplace("Professorship", personList[0].Professorship, name);
+            WordReplace("SecondTitle", personList[0].SecondTitle, name);
 
             string fileName = "test2.docx";
             return fileName;
@@ -129,7 +115,19 @@ namespace DoorSign.Models
 
         public string  CreateSignCubicle(List<PersonCubicle> personList)
         {
-            string templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\" + FindTemplateCubicle(personList) + ".docx";
+            string templateName = "";
+            switch (personList[0].AmtName)
+            {
+                case PersonCubicle.CubeType.One:
+                    templateName = @"~\templates\Cubicles\Cubicle_One_Person_Template.docx";
+                    break;
+                case PersonCubicle.CubeType.Two:
+                    templateName = @"~\templates\Cubicles\Cubicle_Two_People_Template.docx";
+                    break;
+                case PersonCubicle.CubeType.Three:
+                    templateName = @"~\templates\Cubicles\Cubicle_Three_People_Template.docx";
+                    break;
+            }
             string name = "test2.docx";
             CloneDocumentTemplate(templateName, name);
 

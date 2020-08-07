@@ -7,13 +7,15 @@
 @section HeadSection {
     <script src="~/js/office.js" asp-append-version="true"></script>
 }
-<h1>Office</h1>
+<h1>Office Sign</h1>
+<h2><small>Note:</small></h2>
+<p>
+    Second Title and Professorship are not required to fill out to create a sign<br />
+    An office sign can have up to three people displayed at once
+</p>
 <hr />
 <div class="row">
     <div>
-
-
-
         <form asp-action="SavePersonOffice">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -57,12 +59,12 @@
                                 </div>
 
                                 <div class="col">
-                                    <input asp-for="@Model.EmployeesOffice[i].SecondTitle" class="form-control" placeholder="Second Title" />
+                                    <input asp-for="@Model.EmployeesOffice[i].SecondTitle" class="form-control" placeholder="Second Title (optional)" />
                                     <span asp-validation-for="@Model.EmployeesOffice[i].SecondTitle" class="text-danger"></span>
                                 </div>
 
                                 <div class="col">
-                                    <input asp-for="@Model.EmployeesOffice[i].Professorship" class="form-control" placeholder="Professorship" />
+                                    <input asp-for="@Model.EmployeesOffice[i].Professorship" class="form-control" placeholder="Professorship (optional)" />
                                     <span asp-validation-for="@Model.EmployeesOffice[i].Professorship" class="text-danger"></span>
                                 </div>
                             </div>

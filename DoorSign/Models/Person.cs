@@ -22,7 +22,7 @@ namespace DoorSign.Models
         public Departments Department { get; set; }
 
         [Required(ErrorMessage = "Please enter a room number.")]
-        public int RoomNumber { get; set; }
+        public int? RoomNumber { get; set; }
     }
     public enum Departments
     {

@@ -7,8 +7,8 @@ namespace DoorSign.Models
 {
     public class PersonOffice : Person
     {
-        public string Professorship { get; set; }
+        public string? Professorship { get; set; }
         
-        public string SecondTitle { get; set; }
+        public string? SecondTitle { get; set; }
     }
 }

@@ -84,7 +84,15 @@ namespace DoorSign.Models
             string templateName = "";
             if (!(personList[0].Professorship == null))
             {
-                templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\Office_One_Person_with_Professorship_Template.docx";
+                if (!(personList[0].SecondTitle == null))
+                {
+                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\Office_One_Person_with_Two_Titles_Template.docx";
+                }
+                else
+                {
+                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\Office_One_Person_with_Professorship_Template.docx";
+                }
+                
             }
             else
             {
@@ -116,16 +124,18 @@ namespace DoorSign.Models
         public string  CreateSignCubicle(List<PersonCubicle> personList)
         {
             string templateName = "";
+            Console.WriteLine(personList[0].AmtName.ToString());
             switch (personList[0].AmtName)
             {
                 case PersonCubicle.CubeType.One:
-                    templateName = @"~\templates\Cubicles\Cubicle_One_Person_Template.docx";
+                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\Cubicle_One_Person_Template.docx";
                     break;
                 case PersonCubicle.CubeType.Two:
-                    templateName = @"~\templates\Cubicles\Cubicle_Two_People_Template.docx";
+                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\Cubicle_Two_People_Template.docx";
+                    Console.WriteLine("hi");
                     break;
                 case PersonCubicle.CubeType.Three:
-                    templateName = @"~\templates\Cubicles\Cubicle_Three_People_Template.docx";
+                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\Cubicle_Three_People_Template.docx";
                     break;
             }
             string name = "test2.docx";

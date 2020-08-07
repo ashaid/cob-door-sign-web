@@ -50,9 +50,6 @@ namespace DoorSign.Controllers
                 //add the url for the PDF here so they can download it
 
                 SignUtilities util = new SignUtilities();
-                
-                Console.WriteLine("hi");
-                Console.WriteLine(templateModel.GetType().ToString());
                 try
                 {
                     string fileName = util.CreateSignOffice(templateModel.EmployeesOffice);

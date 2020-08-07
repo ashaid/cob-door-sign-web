@@ -37,13 +37,13 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="@Model.EmployeesCubicle[0].Department" class="control-label"></label>
-                @Html.DropDownList("Department", new SelectList(Enum.GetValues(typeof(Departments))), "---");
+                @Html.DropDownList("Department", new SelectList(Enum.GetValues(typeof(Departments))), "---")
                 <span asp-validation-for="@Model.EmployeesCubicle[0].Department" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="@Model.EmployeesCubicle[0].AmtName" class="control-label"></label>
-                @Html.DropDownList("Cube Type", new SelectList(Enum.GetValues(typeof(PersonCubicle.CubeType))), "---");
+                @Html.DropDownList("AmtName", new SelectList(Enum.GetValues(typeof(PersonCubicle.CubeType))), "---")
                 <span asp-validation-for="@Model.EmployeesCubicle[0].AmtName" class="text-danger"></span>
             </div>
 

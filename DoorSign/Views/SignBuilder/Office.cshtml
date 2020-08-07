@@ -13,6 +13,20 @@
     Second Title and Professorship are not required to fill out to create a sign<br />
     An office sign can have up to three people displayed at once
 </p>
+<p>
+    <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="Displays office templates">
+        Display templates
+    </a>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="small">
+            <img src="@Url.Content("~/templates/previews/officeX1.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
+            <img src="@Url.Content("~/templates/previews/officeX2.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
+            <img src="@Url.Content("~/templates/previews/officeX3.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
+        </div>
+    </div>
+</div>
 <hr />
 <div class="row">
     <div>
@@ -33,16 +47,12 @@
                 <div class="panel-heading">Employee Information</div>
                 <div class="panel-body">
 
-
                     <div id="EmployeeSection">
-
                         <button type="button" id="AddPerson" class="btn btn-secondary">Add Person</button>
                         <button type="button" id="RemovePerson" class="btn btn-danger">Remove Person</button>
-
                         @for (var i = 0; i < Model.EmployeesOffice.Count; i++)
                         {
                             <div class="row @i">
-
                                 <div class="col">
                                     <input asp-for="@Model.EmployeesOffice[i].FirstName" class="form-control" placeholder="First Name" />
                                     <span asp-validation-for="@Model.EmployeesOffice[i].FirstName" class="text-danger"></span>
@@ -68,14 +78,15 @@
                                     <span asp-validation-for="@Model.EmployeesOffice[i].Professorship" class="text-danger"></span>
                                 </div>
                             </div>
-
                         }
+                        
                     </div>
                     <input type="hidden" id="totalEmployees" name="totalEmployees" value="@Model.EmployeesOffice.Count" />
                 </div>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary btn-lg btn-block" />
             </div>
         </form>
     </div>

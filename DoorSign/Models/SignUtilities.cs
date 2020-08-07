@@ -97,7 +97,16 @@ namespace DoorSign.Models
 
         public string CreateSignOffice(List<PersonOffice> personList)
         {
-            string templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\" + FindTemplateOffice(personList) + ".docx";
+            string templateName = "";
+            if (!(personList[0].Professorship == null))
+            {
+                templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\Office_One_Person_with_Professorship_Template.docx";
+            }
+            else
+            {
+                templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\" + FindTemplateOffice(personList) + ".docx";
+            }
+            
             string name = "test2.docx";
             CloneDocumentTemplate(templateName, name);
 
@@ -109,7 +118,9 @@ namespace DoorSign.Models
                 WordReplace("Title" + count, person.Title, name);
                 count++;
             }
+
             WordReplace("Department", FindDepartmentOffice(personList), name);
+            WordReplace("Professorship", personList[0].Professorship, name);
             WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
             string fileName = "test2.docx";

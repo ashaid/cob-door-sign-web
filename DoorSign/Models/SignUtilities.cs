@@ -6,16 +6,24 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DoorSign.Models
 {
     public class SignUtilities
     {
-
+        private IWebHostEnvironment host;
+        public SignUtilities(IWebHostEnvironment host)
+        {
+            this.host = host;
+        }
         void WordReplace(string find, string replace, string newDocument)
         {
+            string path = host.ContentRootFileProvider.GetFileInfo("/wwwroot/template/built/").PhysicalPath;
             using WordprocessingDocument doc =
-                    WordprocessingDocument.Open(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + newDocument, true);
+                    WordprocessingDocument.Open(path + newDocument, true);
             {
                 var document = doc.MainDocumentPart.Document.Body;
 
@@ -36,8 +44,9 @@ namespace DoorSign.Models
 
         void CloneDocumentTemplate(string templateName, string name)
         {
+            string path = host.ContentRootFileProvider.GetFileInfo("/wwwroot/template/built/").PhysicalPath;
             using (var mainDoc = WordprocessingDocument.Open(templateName, false))
-            using (var resultDoc = WordprocessingDocument.Create(@"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\" + name,
+            using (var resultDoc = WordprocessingDocument.Create(path + name,
               WordprocessingDocumentType.Document))
             {
                 // copy parts from source document to new document
@@ -86,21 +95,23 @@ namespace DoorSign.Models
             {
                 if (!(personList[0].SecondTitle == null))
                 {
-                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\Office_One_Person_with_Two_Titles_Template.docx";
+                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Titles_Template.docx";
                 }
                 else
                 {
-                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\Office_One_Person_with_Professorship_Template.docx";
+                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Professorship_Template.docx";
                 }
                 
             }
             else
             {
-                templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Offices\" + FindTemplateOffice(personList) + ".docx";
+                templateName = "/wwwroot/template/Offices/" + FindTemplateOffice(personList) + ".docx";
             }
             
-            string name = "test2.docx";
-            CloneDocumentTemplate(templateName, name);
+            string name = personList[0].RoomNumber.ToString() + "_Office.docx";
+
+            string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
+            CloneDocumentTemplate(path, name);
 
             int count = 1;
             foreach (Person person in personList)
@@ -117,28 +128,27 @@ namespace DoorSign.Models
             WordReplace("Professorship", personList[0].Professorship, name);
             WordReplace("SecondTitle", personList[0].SecondTitle, name);
 
-            string fileName = "test2.docx";
-            return fileName;
+            return name;
         }
 
-        public string  CreateSignCubicle(List<PersonCubicle> personList)
+        public string CreateSignCubicle(List<PersonCubicle> personList)
         {
             string templateName = "";
             Console.WriteLine(personList[0].AmtName.ToString());
             switch (personList[0].AmtName)
             {
                 case PersonCubicle.CubeType.One:
-                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\Cubicle_One_Person_Template.docx";
+                    templateName = "/wwwroot/template/Cubicles/Cubicle_One_Person_Template.docx";
                     break;
                 case PersonCubicle.CubeType.Two:
-                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\Cubicle_Two_People_Template.docx";
+                    templateName = "/wwwroot/template/Cubicles/Cubicle_Two_People_Template.docx";
                     Console.WriteLine("hi");
                     break;
                 case PersonCubicle.CubeType.Three:
-                    templateName = @"C:\Users\antho\Desktop\DoorSign\DoorSign\wwwroot\templates\Cubicles\Cubicle_Three_People_Template.docx";
+                    templateName = "/wwwroot/template/Cubicles/Cubicle_Three_People_Template.docx";
                     break;
             }
-            string name = "test2.docx";
+            string name = personList[0].RoomNumber.ToString() + "_Cubicle.docx";
             CloneDocumentTemplate(templateName, name);
 
             int count = personList.Count;
@@ -165,8 +175,7 @@ namespace DoorSign.Models
             WordReplace("Department", FindDepartmentCubicle(personList), name);
             WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
-            string fileName = "test2.pdf";
-            return fileName;
+            return name;
         }
     }
 }

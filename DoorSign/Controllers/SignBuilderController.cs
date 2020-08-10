@@ -5,12 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DoorSign.Models;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DoorSign.Controllers
 {
  
     public class SignBuilderController : Controller
     {
+
+        private IWebHostEnvironment host;
+        public SignBuilderController(IWebHostEnvironment host)
+        {
+           
+            this.host = host;
+        }
+
         [HttpGet]
         public ViewResult Office(int? numEmployees)
         {
@@ -49,7 +59,7 @@ namespace DoorSign.Controllers
                 // create a pdf from the generated template
                 //add the url for the PDF here so they can download it
 
-                SignUtilities util = new SignUtilities();
+                SignUtilities util = new SignUtilities(host);
                 try
                 {
                     string fileName = util.CreateSignOffice(templateModel.EmployeesOffice);
@@ -78,7 +88,7 @@ namespace DoorSign.Controllers
                 // create a pdf from the generated template
                 //add the url for the PDF here so they can download it
 
-                SignUtilities util = new SignUtilities();
+                SignUtilities util = new SignUtilities(host);
                 try
                 {
                    string fileName =  util.CreateSignCubicle(templateModel.EmployeesCubicle);

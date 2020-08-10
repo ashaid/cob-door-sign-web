@@ -23,6 +23,7 @@ namespace DoorSign.Models
 
         [Required(ErrorMessage = "Please enter a room number.")]
         public int RoomNumber { get; set; }
+        
     }
     public enum Departments
     {
@@ -35,4 +36,5 @@ namespace DoorSign.Models
         Department_of_Public_Administration,
         Flores_MBA_Program
     }
+
 }

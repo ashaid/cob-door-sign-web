@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DoorSign.Models
 {
@@ -12,14 +13,14 @@ namespace DoorSign.Models
         public string Letter { get; set; }
 
         [Required(ErrorMessage = "Please select how many names on one sign.")]
-        public CubeType AmtName { get; set; }
+        public CubeTypes CubeType { get; set; }
 
-        public enum CubeType
+        public enum CubeTypes
         {
             One,
             Two,
             Three
         }
-        
+
     }
 }

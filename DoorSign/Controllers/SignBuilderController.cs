@@ -7,6 +7,7 @@ using DoorSign.Models;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DoorSign.Controllers
 {
@@ -82,26 +83,23 @@ namespace DoorSign.Controllers
         [HttpPost]
         public ViewResult SavePersonCubicle(TemplateModelCubicle templateModel)
         {
+            var cubeTypes = new SelectList(new[] { "One", "Two", "Three" });
+            ViewBag.ExamploList = cubeTypes;
+
             if (ModelState.IsValid)
             {
-                //Put your code here to use data to generate the tamplate
-                // create a pdf from the generated template
-                //add the url for the PDF here so they can download it
-
                 SignUtilities util = new SignUtilities(host);
                 try
                 {
-                   string fileName =  util.CreateSignCubicle(templateModel.EmployeesCubicle);
-                   TempData["GeneratedFile"] = fileName;
-                   
+                    string fileName = util.CreateSignCubicle(templateModel.EmployeesCubicle);
+                    TempData["GeneratedFile"] = fileName;
+
                 }
                 catch
                 {
 
                 }
-                string filen = @"~\wwwroot\templates\" + "test2.pdf";
 
-                ViewBag.PDFUrl = filen;
                 return View("Results");
             }
             else

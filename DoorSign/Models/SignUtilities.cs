@@ -91,8 +91,7 @@ namespace DoorSign.Models
         public string CreateSignOffice(List<PersonOffice> personList)
         {
             string templateName = "";
-            string test = personList[0].Professorship;
-            Console.WriteLine(test);
+
             if (!(personList[0].Professorship == "null"))
             {
                 if (!(personList[0].SecondTitle == "null"))
@@ -136,22 +135,21 @@ namespace DoorSign.Models
         public string CreateSignCubicle(List<PersonCubicle> personList)
         {
             string templateName = "";
-            Console.WriteLine(personList[0].AmtName.ToString());
-            switch (personList[0].AmtName)
+            switch(personList[0].CubeType)
             {
-                case PersonCubicle.CubeType.One:
+                case PersonCubicle.CubeTypes.One:
                     templateName = "/wwwroot/template/Cubicles/Cubicle_One_Person_Template.docx";
                     break;
-                case PersonCubicle.CubeType.Two:
+                case PersonCubicle.CubeTypes.Two:
                     templateName = "/wwwroot/template/Cubicles/Cubicle_Two_People_Template.docx";
-                    Console.WriteLine("hi");
                     break;
-                case PersonCubicle.CubeType.Three:
+                case PersonCubicle.CubeTypes.Three:
                     templateName = "/wwwroot/template/Cubicles/Cubicle_Three_People_Template.docx";
                     break;
             }
             string name = personList[0].RoomNumber.ToString() + "_Cubicle.docx";
-            CloneDocumentTemplate(templateName, name);
+            string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
+            CloneDocumentTemplate(path, name);
 
             int count = personList.Count;
             foreach (PersonCubicle person in personList)

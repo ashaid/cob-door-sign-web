@@ -91,9 +91,11 @@ namespace DoorSign.Models
         public string CreateSignOffice(List<PersonOffice> personList)
         {
             string templateName = "";
-            if (!(personList[0].Professorship == null))
+            string test = personList[0].Professorship;
+            Console.WriteLine(test);
+            if (!(personList[0].Professorship == "null"))
             {
-                if (!(personList[0].SecondTitle == null))
+                if (!(personList[0].SecondTitle == "null"))
                 {
                     templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Titles_Template.docx";
                 }

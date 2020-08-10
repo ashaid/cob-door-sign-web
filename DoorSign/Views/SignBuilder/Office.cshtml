@@ -21,9 +21,11 @@
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
         <div class="small">
-            <img src="@Url.Content("~/templates/previews/officeX1.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
-            <img src="@Url.Content("~/templates/previews/officeX2.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
-            <img src="@Url.Content("~/templates/previews/officeX3.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
+            <img src="@Url.Content("~/templates/previews/officeX1.jpg")" class="img-thumbnail" alt="Office 1 person" />
+            <img src="@Url.Content("~/templates/previews/officeX2.jpg")" class="img-thumbnail" alt="Office 2 people" />
+            <img src="@Url.Content("~/templates/previews/officeX3.jpg")" class="img-thumbnail" alt="Office 3 people" />
+            <img src="@Url.Content("~/templates/previews/officeXprofessorship.jpg")" class="img-thumbnail" alt="Office Professorship" />
+            <img src="@Url.Content("~/templates/previews/officeXtwotitle.jpg")" class="img-thumbnail" alt="Office 2 titles" />
         </div>
     </div>
 </div>
@@ -37,6 +39,7 @@
                 @Html.DropDownList("Departments", new SelectList(Enum.GetValues(typeof(Departments))), "---")
                 <span asp-validation-for="@Model.EmployeesOffice[0].Department" class="text-danger"></span>
             </div>
+            <p>Room Number</p>
             <div class="form-group">
                 <input asp-for="@Model.EmployeesOffice[0].RoomNumber" class="form-control" placeholder="Room Number" />
                 <span asp-validation-for="@Model.EmployeesOffice[0].RoomNumber" class="text-danger"></span>
@@ -74,7 +77,7 @@
                                 </div>
 
                                 <div class="col">
-                                    <input asp-for="@Model.EmployeesOffice[i].Professorship" class="form-control" placeholder="Professorship (optional)" />
+                                    <input asp-for="@Model.EmployeesOffice[i].Professorship" class="form-control" placeholder="Professorship/Organization (optional)" />
                                     <span asp-validation-for="@Model.EmployeesOffice[i].Professorship" class="text-danger"></span>
                                 </div>
                             </div>

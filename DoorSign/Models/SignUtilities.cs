@@ -82,10 +82,6 @@ namespace DoorSign.Models
             Office_One_Person_Template = 1,
             Office_Two_People_Template,
             Office_Three_People_Template,
-
-            Office_One_Person_with_Two_Titles_Template = 20,
-            Office_One_Person_with_Professorship_Template,
-            Office_Two_PhD_Students_Template,
         }
 
         public string CreateSignOffice(List<PersonOffice> personList)

@@ -91,15 +91,20 @@ namespace DoorSign.Models
 
             if (!(personList[0].Professorship == null))
             {
-                if (!(personList[0].SecondTitle == null))
+                if(!(personList[0].SecondTitle == null))
                 {
-                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Titles_Template.docx";
+                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Departments.docx";
                 }
                 else
                 {
-                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Professorship_Template.docx";
+                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Chair_Template.docx";
                 }
                 
+            }
+
+            else if(!(personList[0].SecondTitle == null))
+            {
+                templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Titles_Template.docx";
             }
 
             else
@@ -124,7 +129,7 @@ namespace DoorSign.Models
             WordReplace("Department", FindDepartmentOffice(personList), name);
             WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
-            WordReplace("Professorship", personList[0].Professorship, name);
+            WordReplace("Chair", personList[0].Professorship, name);
             WordReplace("SecondTitle", personList[0].SecondTitle, name);
 
             return name;

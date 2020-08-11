@@ -38,7 +38,6 @@
 
             <div class="form-group">
                 <label asp-for="@Model.EmployeesCubicle[0].Department" class="control-label"></label>
-                @*@Html.DropDownList("Department", new SelectList(Enum.GetValues(typeof(Departments))), "---")*@
                 @Html.DropDownListFor(m => m.EmployeesCubicle[0].Department, new SelectList(Enum.GetValues(typeof(Departments))), "---")
                 <span asp-validation-for="@Model.EmployeesCubicle[0].Department" class="text-danger"></span>
             </div>

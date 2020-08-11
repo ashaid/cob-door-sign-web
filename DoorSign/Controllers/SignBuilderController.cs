@@ -83,8 +83,6 @@ namespace DoorSign.Controllers
         [HttpPost]
         public ViewResult SavePersonCubicle(TemplateModelCubicle templateModel)
         {
-            var cubeTypes = new SelectList(new[] { "One", "Two", "Three" });
-            ViewBag.ExamploList = cubeTypes;
 
             if (ModelState.IsValid)
             {
@@ -107,8 +105,6 @@ namespace DoorSign.Controllers
                 ModelState.AddModelError("", "Please correct the highlighted error below.");
                 return View("Cubicle", templateModel);
             }
-
-
         }
     }
 }

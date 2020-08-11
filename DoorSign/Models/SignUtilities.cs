@@ -21,6 +21,7 @@ namespace DoorSign.Models
         }
         void WordReplace(string find, string replace, string newDocument)
         {
+
             string path = host.ContentRootFileProvider.GetFileInfo("/wwwroot/template/built/").PhysicalPath;
             using WordprocessingDocument doc =
                     WordprocessingDocument.Open(path + newDocument, true);
@@ -88,9 +89,9 @@ namespace DoorSign.Models
         {
             string templateName = "";
 
-            if (!(personList[0].Professorship == "null"))
+            if (personList[0].Professorship == "null")
             {
-                if (!(personList[0].SecondTitle == "null"))
+                if (personList[0].SecondTitle == "null")
                 {
                     templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Titles_Template.docx";
                 }
@@ -100,6 +101,7 @@ namespace DoorSign.Models
                 }
                 
             }
+
             else
             {
                 templateName = "/wwwroot/template/Offices/" + FindTemplateOffice(personList) + ".docx";

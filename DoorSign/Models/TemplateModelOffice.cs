@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace DoorSign.Models
         {
             EmployeesOffice = new List<PersonOffice>();
         }
+
+        
         public void AddEmployeeOffice(PersonOffice newPerson)
         {
             EmployeesOffice.Add(newPerson);

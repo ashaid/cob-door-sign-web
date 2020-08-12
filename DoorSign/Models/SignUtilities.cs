@@ -9,6 +9,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.AspNetCore.Hosting;
+using System.Linq;
 
 namespace DoorSign.Models
 {
@@ -56,27 +57,101 @@ namespace DoorSign.Models
             }
         }
 
-
-        string FindDepartmentOffice(List<PersonOffice> personList)
+        string FindDepartment (string DepartmentNumber)
         {
-            string s = personList[0].Department.ToString();
-            s = s.Replace("_", " ");
+            string s = "";
+            switch (DepartmentNumber)
+            {
+                case "0":
+                    s = "Please select a department";
+                    break;
+                case "1":
+                    s = "Department of Accounting";
+                    break;
+                case "2":
+                    s = "Department of Economics";
+                    break;
+                case "3":
+                    s = "Department of Finance";
+                    break;
+                case "4":
+                    s = "Stephenson Department of Entrepreneurship & Information Systems";
+                    break;
+                case "5":
+                    s = "Rucks Department of Management";
+                    break;
+                case "6":
+                    s = "Department of Marketing";
+                    break;
+                case "7":
+                    s = "Department of Public Administration";
+                    break;
+                case "8":
+                    s = "Flores MBA Program";
+                    break;
+                case "9":
+                    s = "Please select an institute";
+                    break;
+                case "10":
+                    s = "Center for Analytics, Research & Transportation Safety";
+                    break;
+                case "11":
+                    s = "Center for Internal Auditing";
+                    break;
+                case "12":
+                    s = "Professional Sales Institute";
+                    break;
+                case "13":
+                    s = "Real Estate Research Institute";
+                    break;
+                case "14":
+                    s = "Stephenson Entrepreneurship Institute";
+                    break;
+                case "15":
+                    s = "Please select a valid other choice";
+                    break;
+                case "16":
+                    s = "Advancement";
+                    break;
+                case "17":
+                    s = "External Relations";
+                    break;
+                case "18":
+                    s = "Office of Bussiness Student Success";
+                    break;
+            }
             return s;
         }
-
-        string FindDepartmentCubicle(List<PersonCubicle> personList)
-        {
-            string s = personList[0].Department.ToString();
-            s = s.Replace("_", " ");
-            return s;
-        }
-
-
         public string FindTemplateOffice(List<PersonOffice> personList)
         {
-            int length = personList.Count;
-            TemplatesOffice template = (TemplatesOffice)length;
-            return template.ToString();
+            string templateName = "";
+
+            if (!(personList[0].Professorship == null))
+            {
+                if (!(personList[0].SecondTitle == null))
+                {
+                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Departments.docx";
+                }
+                else
+                {
+                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Chair_Template.docx";
+                }
+
+            }
+
+            else if (!(personList[0].SecondTitle == null))
+            {
+                templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Titles_Template.docx";
+            }
+
+            else
+            {
+                int length = personList.Count;
+                TemplatesOffice template = (TemplatesOffice)length;
+                templateName = "/wwwroot/template/Offices/" + template.ToString() + ".docx";
+            }
+
+            return templateName;
         }
         enum TemplatesOffice
         {
@@ -87,31 +162,8 @@ namespace DoorSign.Models
 
         public string CreateSignOffice(List<PersonOffice> personList)
         {
-            string templateName = "";
 
-            if (!(personList[0].Professorship == null))
-            {
-                if(!(personList[0].SecondTitle == null))
-                {
-                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Departments.docx";
-                }
-                else
-                {
-                    templateName = "/wwwroot/template/Offices/Office_One_Person_with_Chair_Template.docx";
-                }
-                
-            }
-
-            else if(!(personList[0].SecondTitle == null))
-            {
-                templateName = "/wwwroot/template/Offices/Office_One_Person_with_Two_Titles_Template.docx";
-            }
-
-            else
-            {
-                templateName = "/wwwroot/template/Offices/" + FindTemplateOffice(personList) + ".docx";
-            }
-            
+            string templateName = FindTemplateOffice(personList);
             string name = personList[0].RoomNumber.ToString() + "_Office.docx";
 
             string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
@@ -126,7 +178,7 @@ namespace DoorSign.Models
                 count++;
             }
 
-            WordReplace("Department", FindDepartmentOffice(personList), name);
+            WordReplace("Department", FindDepartment(personList[0].Department), name);
             WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
             WordReplace("Chair", personList[0].Professorship, name);
@@ -175,7 +227,7 @@ namespace DoorSign.Models
 
                 count--;
             }
-            WordReplace("Department", FindDepartmentCubicle(personList), name);
+            WordReplace("Department", FindDepartment(personList[0].Department), name);
             WordReplace("RoomNumber", personList[0].RoomNumber.ToString(), name);
 
             return name;

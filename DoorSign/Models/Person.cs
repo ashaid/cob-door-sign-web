@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,22 +19,28 @@ namespace DoorSign.Models
         [Required(ErrorMessage = "Please enter a title.")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Please select a department.")]
-        public Departments Department { get; set; }
+        //[Required(ErrorMessage = "Please select a department.")]
+        //public string Department { get; set; }
 
         public int? RoomNumber { get; set; }
-        
+        public string Department { get; set; }
+
     }
-    public enum Departments
-    {
-        Department_of_Accounting,
-        Department_of_Economics,
-        Department_of_Finance,
-        SDEIS,
-        Rucks_Department_of_Managemnt,
-        Department_of_Marketing,
-        Department_of_Public_Administration,
-        Flores_MBA_Program
-    }
+
+
+    //public enum Departments
+    //{
+    //    Department_of_Accounting,
+    //    Department_of_Economics,
+    //    Department_of_Finance,
+    //    SDEIS,
+    //    Rucks_Department_of_Managemnt,
+    //    Department_of_Marketing,
+    //    Department_of_Public_Administration,
+    //    Flores_MBA_Program,
+
+    //    [Display(Name = "Centers and Institutes")]
+    //    Centers_and_Institutes
+    //}
 
 }

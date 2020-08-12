@@ -37,7 +37,39 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="@Model.EmployeesOffice[0].Department" class="control-label"></label>
-                @Html.DropDownListFor(m => m.EmployeesOffice[0].Department, new SelectList(Enum.GetValues(typeof(Departments))), "---")
+                @*@Html.DropDownListFor(m => m.EmployeesOffice[0].Department, new SelectList(Enum.GetValues(typeof(Departments))), "---")*@
+                
+                @Html.DropDownListFor(
+                        model => model.EmployeesOffice[0].Department,
+                        new SelectList(
+                            new List<Object> 
+                            {
+                                new { value = 0 , text = "---" },
+                                new { value = 1 , text = "Department of Acounting" },
+                                new { value = 2 , text = "Department of Economics" },
+                                new { value = 3 , text = "Department of Finance" },
+                                new { value = 4 , text = "Stephenson department of Entrepreneurship & Information Systems" },
+                                new { value = 5 , text = "Rucks Department of Management" },
+                                new { value = 6 , text = "Department of Marketing" },
+                                new { value = 7 , text = "Department of Public Administration" },
+                                new { value = 8 , text = "Flores MBA Program" },
+                                new { value = 9 , text = "---Centers and Institutes---" },
+                                new { value = 10 , text = "Center for Analytics, Research & Transportation Safety" },
+                                new { value = 11 , text = "Center for Internal Auditing" },
+                                new { value = 12 , text = "Professional Sales Institute" },
+                                new { value = 13 , text = "Real Estate Research Institute" },
+                                new { value = 14 , text = "Stephenson Entrepreneurship Institute" },
+                                new { value = 15, text = "---Other---" },
+                                new { value = 16, text = "Advancement" },
+                                new { value = 17, text = "External Relations" },
+                                new { value = 18, text = "Office of Business Student Success" }
+                            },
+                            "value",
+                            "text",
+                            Model.EmployeesOffice[0].Department
+                        )
+                    )
+
                 <span asp-validation-for="@Model.EmployeesOffice[0].Department" class="text-danger"></span>
             </div>
 

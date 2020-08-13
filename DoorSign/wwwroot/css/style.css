@@ -5,8 +5,10 @@
     font-weight: 400;
 }
 
-.img-thumbnail{
-    background-color: #121212;
+.img-thumbnail {
+    background-color: #414141;
+    outline-color: #414141;
+    color: #414141;
 }
 .btn-custom {
     color: white;

@@ -63,7 +63,7 @@ namespace DoorSign.Models
             switch (DepartmentNumber)
             {
                 case "0":
-                    s = "Please select a department";
+                    s = "Center for Internal Auditing";
                     break;
                 case "1":
                     s = "Department of Accounting";
@@ -75,63 +75,53 @@ namespace DoorSign.Models
                     s = "Department of Finance";
                     break;
                 case "4":
-                    s = "Department of Public Administration";
+                    s = "Department of Marketing";
                     break;
                 case "5":
-                    s = "Flores MBA Program";
+                    s = "Department of Public Administration";
                     break;
                 case "6":
-                    s = "Flores MBA Program";
-                    break;
-                case "7":
-                    s = "Rucks Department of Management";
-                    break;
-                case "8":
-                    s = "Stephenson Department of Entrepreneurship & Information Systems";
-                    break;
-                case "9":
-                    s = "Please select an institute";
-                    break;
-                case "10":
-                    s = "Center for Internal Auditing";
-                    break;
-                case "11":
-                    s = "Professional Sales Institute";
-                    break;
-                case "12":
-                    s = "Real Estate Research Institute";
-                    break;
-                case "13":
-                    s = "Stephenson Entrepreneurship Institute";
-                    break;
-                case "14":
-                    s = "Please select a valid other choice";
-                    break;
-                case "15":
                     s = "Economics & Policy Research Group";
                     break;
-                case "16":
+                case "7":
                     s = "Executive Education";
                     break;
-                case "17":
+                case "8":
                     s = "External Relations";
                     break;
-                case "18":
+                case "9":
+                    s = "Flores MBA Program";
+                    break;
+                case "10":
                     s = "Information Technology Group";
                     break;
-                case "19":
+                case "11":
                     s = "Office of Advancement";
                     break;
-                case "20":
+                case "12":
                     s = "Office of Business Student Success";
                     break;
-                case "21":
+                case "13":
                     s = "Office of Research & Graduate Programs";
                     break;
-                case "22":
+                case "14":
                     s = "Office of the Dean";
                     break;
-
+                case "15":
+                    s = "Professional Sales Institute";
+                    break;
+                case "16":
+                    s = "Real Estate Research Institute";
+                    break;
+                case "17":
+                    s = "Rucks Department of Managemen";
+                    break;
+                case "18":
+                    s = "Stephenson Department of Entrepreneurship & Information Systems";
+                    break;
+                case "19":
+                    s = "Stephenson Entrepreneurship Institute";
+                    break;
             }
             return s;
         }

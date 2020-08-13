@@ -13,7 +13,7 @@ $(document).ready(function () {
         var LNameHTML = '<input class="form-control" placeholder="Last Name" type="text" name="EmployeesOffice[' + i + '].LastName" value="" />';
         var Title = '<input class="form-control" placeholder="Title" type="text" name="EmployeesOffice[' + i + '].Title" value="" />';
         var SecondTitle = '<input class="form-control" placeholder="Second Title (optional)" type="text" name="EmployeesOffice[' + i + '].SecondTitle" value="" />';
-        var Professorship = '<input class="form-control" placeholder="Chair (optional)" type="text" name="EmployeesOffice[' + i + '].Professorship" value="" />';
+        var Professorship = '<input class="form-control" placeholder="Third Title (optional)" type="text" name="EmployeesOffice[' + i + '].Professorship" value="" />';
         $('#EmployeeSection').append('<div class="row ' + i + '"><div class= "col">' + FNameHTML + '</div><div class= "col">' + LNameHTML + '</div><div class= "col">' + Title + '</div><div class= "col">' + SecondTitle + '</div><div class= "col">' + Professorship + '</div></div>'); 
     });
     $("#RemovePerson").click(function () {

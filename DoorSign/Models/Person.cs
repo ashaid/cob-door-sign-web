@@ -16,8 +16,7 @@ namespace DoorSign.Models
 
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter a title.")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         //[Required(ErrorMessage = "Please select a department.")]
         //public string Department { get; set; }

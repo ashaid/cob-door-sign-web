@@ -25,6 +25,10 @@
                 Examples of a title:
                 <ul>
                     <li>PhD Student</li>
+                    <li>Professor</li>
+                    <li>Department Chair and Professor</li>
+                    <li>Assistant Professor</li>
+                    <li>Director</li>
                 </ul>
             </li>
             <li>
@@ -136,7 +140,7 @@
 
                                     </div>
                                     <div class="col">
-                                        <input asp-for="@Model.EmployeesCubicle[i].Title" class="form-control" placeholder="Title" />
+                                        <input asp-for="@Model.EmployeesCubicle[i].Title" class="form-control" placeholder="Title (optional)" />
                                         <span asp-validation-for="@Model.EmployeesCubicle[i].Title" class="text-danger"></span>
                                     </div>
                                     <div class="col">

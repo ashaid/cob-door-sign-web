@@ -75,19 +75,19 @@ namespace DoorSign.Models
                     s = "Department of Finance";
                     break;
                 case "4":
-                    s = "Stephenson Department of Entrepreneurship & Information Systems";
-                    break;
-                case "5":
-                    s = "Rucks Department of Management";
-                    break;
-                case "6":
-                    s = "Department of Marketing";
-                    break;
-                case "7":
                     s = "Department of Public Administration";
                     break;
-                case "8":
+                case "5":
                     s = "Flores MBA Program";
+                    break;
+                case "6":
+                    s = "Flores MBA Program";
+                    break;
+                case "7":
+                    s = "Rucks Department of Management";
+                    break;
+                case "8":
+                    s = "Stephenson Department of Entrepreneurship & Information Systems";
                     break;
                 case "9":
                     s = "Please select an institute";
@@ -108,25 +108,28 @@ namespace DoorSign.Models
                     s = "Please select a valid other choice";
                     break;
                 case "15":
-                    s = "Advancement";
+                    s = "Economics & Policy Research Group";
                     break;
                 case "16":
-                    s = "External Relations";
-                    break;
-                case "17":
-                    s = "Office of Bussiness Student Success";
-                    break;
-                case "18":
-                    s = "Office of the Dean";
-                    break;
-                case "19":
                     s = "Executive Education";
                     break;
-                case "20":
+                case "17":
+                    s = "External Relations";
+                    break;
+                case "18":
                     s = "Information Technology Group";
+                    break;
+                case "19":
+                    s = "Office of Advancement";
+                    break;
+                case "20":
+                    s = "Office of Business Student Success";
                     break;
                 case "21":
                     s = "Office of Research & Graduate Programs";
+                    break;
+                case "22":
+                    s = "Office of the Dean";
                     break;
 
             }

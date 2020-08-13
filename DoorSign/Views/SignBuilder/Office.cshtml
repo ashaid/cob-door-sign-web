@@ -1,0 +1,137 @@
+﻿@model DoorSign.Models.TemplateModelOffice
+
+@{
+    ViewData["Title"] = "Office";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadSection {
+    <script src="~/js/office.js" asp-append-version="true"></script>
+}
+<h1>Office Sign</h1>
+<h2><small>Note:</small></h2>
+<p>
+    Second Title and Professorship are not required to fill out to create a sign<br />
+    An office sign can have up to three people displayed at once
+</p>
+<p>
+    <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="Displays office templates">
+        Display templates
+    </a>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="small">
+            <img src="@Url.Content("~/template/previews/officeX1.jpg")" class="img-thumbnail" alt="Office 1 person" />
+            <img src="@Url.Content("~/template/previews/officeX2.jpg")" class="img-thumbnail" alt="Office 2 people" />
+            <img src="@Url.Content("~/template/previews/officeX3.jpg")" class="img-thumbnail" alt="Office 3 people" />
+            <img src="@Url.Content("~/template/previews/officeXchair.jpg")" class="img-thumbnail" alt="Office Professorship" />
+            <img src="@Url.Content("~/template/previews/officeXtwotitle.jpg")" class="img-thumbnail" alt="Office 2 titles with chair" />
+            <img src="@Url.Content("~/template/previews/officeXonlytwotitles.jpg")" class="img-thumbnail" alt="Office 2 titles" />
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="SavePersonOffice">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.EmployeesOffice[0].Department" class="control-label"></label>
+                @*@Html.DropDownListFor(m => m.EmployeesOffice[0].Department, new SelectList(Enum.GetValues(typeof(Departments))), "---")*@
+                
+                @Html.DropDownListFor(
+                        model => model.EmployeesOffice[0].Department,
+                        new SelectList(
+                            new List<Object> 
+                            {
+                                new { value = 0 , text = "---" },
+                                new { value = 1 , text = "Department of Acounting" },
+                                new { value = 2 , text = "Department of Economics" },
+                                new { value = 3 , text = "Department of Finance" },
+                                new { value = 4 , text = "Stephenson Department of Entrepreneurship & Information Systems" },
+                                new { value = 5 , text = "Rucks Department of Management" },
+                                new { value = 6 , text = "Department of Marketing" },
+                                new { value = 7 , text = "Department of Public Administration" },
+                                new { value = 8 , text = "Flores MBA Program" },
+                                new { value = 9 , text = "---Centers and Institutes---" },
+                                new { value = 10 , text = "Center for Internal Auditing" },
+                                new { value = 11 , text = "Professional Sales Institute" },
+                                new { value = 12 , text = "Real Estate Research Institute" },
+                                new { value = 13 , text = "Stephenson Entrepreneurship Institute" },
+                                new { value = 14 , text = "---Other---" },
+                                new { value = 15 , text = "Office of Advancement" },
+                                new { value = 16 , text = "External Relations" },
+                                new { value = 17 , text = "Office of Business Student Success" },
+                                new { value = 18 , text = "Office of the Dean" },
+                                new { value = 19 , text = "Executive Education" },
+                                new { value = 20 , text = "Information Technology Group" },
+                                new { value = 21 , text = "Office of Research & Graduate Programs" }
+                            },
+                            "value",
+                            "text",
+                            Model.EmployeesOffice[0].Department
+                        )
+                    )
+
+                <span asp-validation-for="@Model.EmployeesOffice[0].Department" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="@Model.EmployeesOffice[0].RoomNumber" class="form-control" placeholder="Room Number"/>
+                <span asp-validation-for="@Model.EmployeesOffice[0].RoomNumber" class="text-danger"></span>
+
+            </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Employee Information</div>
+                <div class="panel-body">
+
+                    <div id="EmployeeSection">
+                        <button type="button" id="AddPerson" class="btn btn-custom2 btn-lg">ADD</button>
+                        <button type="button" id="RemovePerson" class="btn btn-custom3 btn-lg">REMOVE</button>
+                        <br />
+                        &nbsp;
+                        @for (var i = 0; i < Model.EmployeesOffice.Count; i++)
+                        {
+                            <div class="row @i">
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesOffice[i].FirstName" class="form-control" placeholder="First Name" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].FirstName" class="text-danger"></span>
+
+                                </div>
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesOffice[i].LastName" class="form-control" placeholder="Last Name" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].LastName" class="text-danger"></span>
+
+                                </div>
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesOffice[i].Title" class="form-control" placeholder="Title" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].Title" class="text-danger"></span>
+                                </div>
+
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesOffice[i].SecondTitle" class="form-control" placeholder="Second Title (optional)" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].SecondTitle" class="text-danger"></span>
+                                </div>
+
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesOffice[i].Professorship" class="form-control" placeholder="Chair (optional)" />
+                                    <span asp-validation-for="@Model.EmployeesOffice[i].Professorship" class="text-danger"></span>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+                    <input type="hidden" id="totalEmployees" name="totalEmployees" value="@Model.EmployeesOffice.Count" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="CREATE" class="btn btn-custom btn-lg btn-block"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

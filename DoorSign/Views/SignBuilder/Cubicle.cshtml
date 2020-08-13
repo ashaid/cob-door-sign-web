@@ -1,0 +1,141 @@
+﻿@model DoorSign.Models.TemplateModelCubicle
+
+@{
+    ViewData["Title"] = "Cubicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadSection {
+    <script src="~/js/cubicle.js" asp-append-version="true"></script>
+}
+
+<h1>Cubicle</h1>
+<h2><small>Note:</small></h2>
+<p>
+    A cubicle sign can have up to three people displayed at once on one sheet, for a total of 15 people.<br />
+    If you are displaying three people on one sign a title is not required.
+    There can be up to 5 different signs on one print.
+</p>
+<p>
+    <a class="btn btn-custom4" data-toggle="collapse" href="collapse" role="button" aria-expanded="false" aria-controls="Displays cubicle templates">
+        Display templates
+    </a>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="small">
+            <img src="@Url.Content("~/template/previews/cubicleX1.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
+            <img src="@Url.Content("~/template/previews/cubicleX2.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
+            <img src="@Url.Content("~/template/previews/cubicleX3.jpg")" class="img-thumbnail" alt="Cubicle 1 person" />
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="SavePersonCubicle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="@Model.EmployeesCubicle[0].Department" class="control-label"></label>
+                @*@Html.DropDownListFor(m => m.EmployeesCubicle[0].Department, new SelectList(Enum.GetValues(typeof(Departments))), "---")*@
+                @Html.DropDownListFor(
+                        model => model.EmployeesCubicle[0].Department,
+                        new SelectList(
+                            new List<Object>
+                            {
+                                new { value = 0 , text = "---" },
+                                new { value = 1 , text = "Department of Acounting" },
+                                new { value = 2 , text = "Department of Economics" },
+                                new { value = 3 , text = "Department of Finance" },
+                                new { value = 4 , text = "Stephenson Department of Entrepreneurship & Information Systems" },
+                                new { value = 5 , text = "Rucks Department of Management" },
+                                new { value = 6 , text = "Department of Marketing" },
+                                new { value = 7 , text = "Department of Public Administration" },
+                                new { value = 8 , text = "Flores MBA Program" },
+                                new { value = 9 , text = "---Centers and Institutes---" },
+                                new { value = 10 , text = "Center for Internal Auditing" },
+                                new { value = 11 , text = "Professional Sales Institute" },
+                                new { value = 12 , text = "Real Estate Research Institute" },
+                                new { value = 13 , text = "Stephenson Entrepreneurship Institute" },
+                                new { value = 14 , text = "---Other---" },
+                                new { value = 15 , text = "Office of Advancement" },
+                                new { value = 16 , text = "External Relations" },
+                                new { value = 17 , text = "Office of Business Student Success" },
+                                new { value = 18 , text = "Office of the Dean" },
+                                new { value = 19 , text = "Executive Education" },
+                                new { value = 20 , text = "Information Technology Group" },
+                                new { value = 21 , text = "Office of Research & Graduate Programs" }
+
+                            },
+                            "value",
+                            "text",
+                            Model.EmployeesCubicle[0].Department
+                        )
+                    )
+                <span asp-validation-for="@Model.EmployeesCubicle[0].Department" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.EmployeesCubicle[0].CubeType" class="control-label"># of people</label>
+                @Html.RadioButtonFor(m => m.EmployeesCubicle[0].CubeType, "One")
+                One
+                @Html.RadioButtonFor(m => m.EmployeesCubicle[0].CubeType, "Two")
+                Two
+                <span asp-validation-for="@Model.EmployeesCubicle[0].CubeType" class="text-danger"></span>
+            </div>
+
+            <p>Room Number</p>
+            <div class="form-group">
+                <input asp-for="@Model.EmployeesCubicle[0].RoomNumber" class="form-control" placeholder="Room Number" />
+                <span asp-validation-for="@Model.EmployeesCubicle[0].RoomNumber" class="text-danger"></span>
+
+            </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Employee Information</div>
+                <div class="panel-body">
+
+
+                    <div id="EmployeeSection">
+
+                        <button type="button" id="AddPerson" class="btn btn-secondary">Add Person</button>
+                        <button type="button" id="RemovePerson" class="btn btn-danger">Remove Person</button>
+
+                        @for (var i = 0; i < Model.EmployeesCubicle.Count; i++)
+                        {
+                            <div class="row @i">
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesCubicle[i].FirstName" class="form-control" placeholder="First Name" />
+                                    <span asp-validation-for="@Model.EmployeesCubicle[i].FirstName" class="text-danger"></span>
+
+                                </div>
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesCubicle[i].LastName" class="form-control" placeholder="Last Name" />
+                                    <span asp-validation-for="@Model.EmployeesCubicle[i].LastName" class="text-danger"></span>
+
+                                </div>
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesCubicle[i].Title" class="form-control" placeholder="Title" />
+                                    <span asp-validation-for="@Model.EmployeesCubicle[i].Title" class="text-danger"></span>
+                                </div>
+                                <div class="col">
+                                    <input asp-for="@Model.EmployeesCubicle[i].Letter" class="form-control" placeholder="Letter (optional)" />
+                                    <span asp-validation-for="@Model.EmployeesCubicle[i].Letter" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                    <input type="hidden" id="totalEmployees" name="totalEmployees" value="@Model.EmployeesCubicle.Count" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary btn-lg btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+

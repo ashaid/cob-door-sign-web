@@ -1,8 +1,11 @@
 ﻿body {
     background-color: #525252;
     color: #FFFFFF;
-    font-family: 'Arial Rounded MT';
     font-weight: 400;
+}
+
+.font-face {
+    font-family: url(Font/ProximaNova-regular.ttf)
 }
 
 .img-thumbnail {

@@ -1,48 +1,48 @@
 ﻿body {
-    background-color: rgba(0,0,0,1.00);
+    background-color: #525252;
     color: #FFFFFF;
     font-family: 'Arial Rounded MT';
-    font-weight:400;
+    font-weight: 400;
 }
 
 .img-thumbnail{
     background-color: #121212;
 }
 .btn-custom {
-    color: #000000;
-    background-color: #BB86FC;
+    color: white;
+    background-color: #461D7C;
     border-color: #000000;
 }
 
 
     .btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .open > .dropdown-toggle.btn-custom {
-        color: #000000;
-        background-color: #BB86FC;
-        border-color: #000000;
+        color: white;
+        background-color: #461D7C;
+        border-color: #FDD023;
     }
 
 .btn-custom2 {
-    color: #000000;
-    background-color: #3700B3;
-    border-color: #3700B3;
+    color: white;
+    background-color: #313131;
+    border-color: #313131;
 }
 
     .btn-custom2:hover, .btn-custom2:focus, .btn-custom2:active, .btn-custom2.active, .open > .dropdown-toggle.btn-custom2 {
-        color: #000000;
-        background-color: #3700B3;
-        border-color: #3700B3;
+        color: black;
+        background-color: #313131;
+        border-color: #313131;
     }
 
 .btn-custom3 {
-    color: #000000;
-    background-color: #CF6679;
+    color: white;
+    background-color: #ca3e47;
     border-color: #000000;
 }
 
 
     .btn-custom3:hover, .btn-custom3:focus, .btn-custom3:active, .btn-custom3.active, .open > .dropdown-toggle.btn-custom3 {
         color: #000000;
-        background-color: #CF6679;
+        background-color: #ca3e47;
         border-color: #000000;
     }
 

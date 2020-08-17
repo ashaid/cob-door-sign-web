@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace DoorSign.Models
 {
-    public class PersonMisc
+    public class PersonMisc : Person
     {
         public string? Heading { get; set; }
 
         public string? RText { get; set; }
 
-        public int? RoomNumber { get; set; }
+        public int? RN { get; set; }
+
     }
 }

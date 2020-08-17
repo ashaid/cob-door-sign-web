@@ -251,5 +251,37 @@ namespace DoorSign.Models
 
             return name;
         }
+        public string CreateSignElevator(List<PersonMisc> miscList)
+        {
+
+            string templateName = "/wwwroot/template/Misc/Department_Sign_Working.docx";
+            string name = FindDepartment(miscList[0].Department) + "_Misc.docx";
+
+            string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
+            CloneDocumentTemplate(path, name);
+
+            int count = miscList.Count;
+            foreach (PersonMisc person in miscList)
+            {
+                Console.WriteLine(count);
+                if (count > 9)
+                {
+                    WordReplace(count + "First", miscList[count - 1].FirstName, name);
+                    WordReplace(count + "Last", miscList[count - 1].LastName, name);
+                    WordReplace(count + "RN", miscList[count - 1].RN.ToString(), name);
+                }
+                else
+                {
+                    WordReplace("First" + count, miscList[count - 1].FirstName, name);
+                    WordReplace("Last" + count, miscList[count - 1].LastName, name);
+                    WordReplace("RN" + count, miscList[count - 1].RN.ToString(), name);
+                }
+
+                count--;
+            }
+
+            WordReplace("Department", FindDepartment(miscList[0].Department), name);
+            return name;
+        }
     }
 }

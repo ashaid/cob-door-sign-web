@@ -1,0 +1,71 @@
+﻿@model DoorSign.Models.TemplateModelMisc
+
+@{
+    ViewData["Title"] = "Office Door Sign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadSection {
+    <script src="~/js/office.js" asp-append-version="true"></script>
+}
+<h1>Misc Sign</h1>
+<a class="btn btn-custom5" data-toggle="collapse" href="#collapseInfo" role="button" aria-expanded="false" aria-controls="Displays office templates">
+    Read Instructions
+</a>
+<div class="collapse" id="collapseInfo">
+    <p>
+        <ul class="list-unstyled">
+            <li>...</li>
+            <li>...</li>
+            <li>
+                ...
+                <ul>
+                    <li>...</li>
+                </ul>
+            </li>
+            <li>Select create to create a word document.</li>
+            <li>If no changes are needed, print the document and cut the door sign to fit the office door bracket.</li>
+        </ul>
+        <a class="btn btn-custom5" data-toggle="collapse" href="#collapseImage" role="button" aria-expanded="false" aria-controls="Displays cubicle templates">
+            Display templates
+        </a>
+    </p>
+</div>
+<div class="collapse" id="collapseImage">
+    <div class="card card-body" style="background-color: #414141">
+        <div class="small">
+            <img src="@Url.Content("~/template/previews/misc.jpg")" class="img-thumbnail" alt="Misc sign" />
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="SavePersonMisc">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="col-2">
+
+                </div>
+
+                <input asp-for="@Model.EmployeesMisc[0].RoomNumber" class="form-control" placeholder="Room Number" />
+                <span asp-validation-for="@Model.EmployeesMisc[0].RoomNumber" class="text-danger"></span>
+
+                <input asp-for="@Model.EmployeesMisc[0].Heading" class="form-control" placeholder="Heading" />
+                <span asp-validation-for="@Model.EmployeesMisc[0].Heading" class="text-danger"></span>
+
+                <input asp-for="@Model.EmployeesMisc[0].RText" class="form-control" placeholder="Text" />
+                <span asp-validation-for="@Model.EmployeesMisc[0].RText" class="text-danger"></span>
+
+            </div>
+            <br />
+            &nbsp;
+            <div class="form-group row">
+                <input type="submit" value="CREATE" class="btn btn-custom btn-lg btn-block" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+

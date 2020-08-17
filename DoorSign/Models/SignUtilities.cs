@@ -235,5 +235,21 @@ namespace DoorSign.Models
 
             return name;
         }
+
+        public string CreateSignMisc(List<PersonMisc> miscList)
+        {
+
+            string templateName = "/wwwroot/template/Misc/Misc.docx";
+            string name = miscList[0].RoomNumber.ToString() + "_Misc.docx";
+
+            string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
+            CloneDocumentTemplate(path, name);
+
+            WordReplace("RText", miscList[0].RText, name);
+            WordReplace("Heading", miscList[0].Heading, name);
+            WordReplace("RoomNumber", miscList[0].RoomNumber.ToString(), name);
+
+            return name;
+        }
     }
 }

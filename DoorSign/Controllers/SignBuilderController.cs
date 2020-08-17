@@ -51,6 +51,20 @@ namespace DoorSign.Controllers
             return View("Cubicle", templateModel);
         }
 
+        [HttpGet]
+        public ViewResult Misc(int? numEmployees)
+        {
+            TemplateModelMisc templateModel = new TemplateModelMisc();
+
+            while (numEmployees > 0)
+            {
+                PersonMisc p = new PersonMisc();
+                templateModel.AddEmployeeMisc(p);
+                numEmployees -= 1;
+            }
+            return View("Misc", templateModel);
+        }
+
         [HttpPost]
         public ViewResult SavePersonOffice(TemplateModelOffice templateModel)
         {
@@ -104,6 +118,33 @@ namespace DoorSign.Controllers
             {
                 ModelState.AddModelError("", "Please correct the highlighted error below.");
                 return View("Cubicle", templateModel);
+            }
+        }
+
+        [HttpPost]
+        public ViewResult SavePersonMisc(TemplateModelMisc templateModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                SignUtilities util = new SignUtilities(host);
+                try
+                {
+                    string fileName = util.CreateSignMisc(templateModel.EmployeesMisc);
+                    TempData["GeneratedFile"] = fileName;
+
+                }
+                catch
+                {
+
+                }
+
+                return View("Results");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please correct the highlighted error below.");
+                return View("Misc", templateModel);
             }
         }
     }

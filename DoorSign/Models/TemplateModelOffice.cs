@@ -10,7 +10,6 @@ namespace DoorSign.Models
     public class TemplateModelOffice
     {
         public List<PersonOffice> EmployeesOffice { get; set; }
-        public List<PersonCubicle> EmployeesCubicle { get; set; }
 
         public TemplateModelOffice()
         {

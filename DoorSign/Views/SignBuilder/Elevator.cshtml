@@ -34,46 +34,9 @@
 <hr />
 <div class="row">
     <div>
-        <p>Select department and room number</p>
         <form asp-action="SavePersonDepartment">
-            <div asp-validation-summary="ModelOnly" class="text-danger">Select department and room number</div>
+            <div asp-validation-summary="ModelOnly" class="text-danger">Select department</div>
             <div class="form-row">
-                @Html.DropDownListFor(
-                        model => model.EmployeesMisc[0].Department,
-                        new SelectList(
-                            new List<Object>
-                            {
-                                new { value = 0 , text = "Center for Internal Auditing" },
-                                new { value = 1 , text = "Department of Accounting" },
-                                new { value = 2 , text = "Department of Economics" },
-                                new { value = 3 , text = "Department of Finance" },
-                                new { value = 4 , text = "Department of Marketing" },
-                                new { value = 5 , text = "Department of Public Administration" },
-                                new { value = 6 , text = "Economics & Policy Research Group" },
-                                new { value = 7 , text = "Executive Education" },
-                                new { value = 8 , text = "External Relations" },
-                                new { value = 9 , text = "Flores MBA Program" },
-                                new { value = 10 , text = "Information Technology Group" },
-                                new { value = 11 , text = "Office of Advancement" },
-                                new { value = 12 , text = "Office of Business Student Success" },
-                                new { value = 13 , text = "Office of Research & Graduate Programs" },
-                                new { value = 14 , text = "Office of the Dean" },
-                                new { value = 15 , text = "Professional Sales Institute" },
-                                new { value = 16 , text = "Real Estate Research Institute" },
-                                new { value = 17 , text = "Rucks Department of Management" },
-                                new { value = 18 , text = "Stephenson Department of Entrepreneurship & Information Systems" },
-                                new { value = 19 , text = "Stephenson Entrepreneurship Institute" }
-                            },
-                            "value",
-                            "text",
-                            Model.EmployeesMisc[0].Department
-                        )
-                    )
-
-                <span asp-validation-for="@Model.EmployeesMisc[0].Department" class="text-danger"></span>
-
-
-
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">Employee Information</div>
@@ -86,26 +49,40 @@
                             &nbsp;
                             @for (var i = 0; i < Model.EmployeesMisc.Count; i++)
                             {
-                        <div class="row @i">
-                            <div class="col">
-                                <input asp-for="@Model.EmployeesMisc[i].FirstName" class="form-control" placeholder="First Name" />
-                                <span asp-validation-for="@Model.EmployeesMisc[i].FirstName" class="text-danger"></span>
-                            </div>
-                            <div class="col">
-                                <input asp-for="@Model.EmployeesMisc[i].LastName" class="form-control" placeholder="Last Name" />
-                                <span asp-validation-for="@Model.EmployeesMisc[i].LastName" class="text-danger"></span>
-                            </div>
+                                <div class="row @i">
+                                    <div class="col">
+                                        <input asp-for="@Model.EmployeesMisc[i].FirstName" class="form-control" placeholder="First Name" />
+                                        <span asp-validation-for="@Model.EmployeesMisc[i].FirstName" class="text-danger"></span>
+                                    </div>
+                                    <div class="col">
+                                        <input asp-for="@Model.EmployeesMisc[i].LastName" class="form-control" placeholder="Last Name" />
+                                        <span asp-validation-for="@Model.EmployeesMisc[i].LastName" class="text-danger"></span>
+                                    </div>
 
-                            <div class="col">
-                                <input asp-for="@Model.EmployeesMisc[i].Title" class="form-control" placeholder="Unit"/>
-                                <span asp-validation-for="@Model.EmployeesMisc[i].Title" class="text-danger"></span>
-                            </div>
+                                    <div class="col">
+                                        <select asp-for="@Model.EmployeesMisc[i].Title" class="form-control" placeholder="Unit" type="list">
+                                            <option value="" disabled selected>Unit</option>
+                                            <option> Center for Internal Auditing</option>
+                                            <option>Department of Public Administration</option>
+                                            <option>Economics & Policy Research Group</option> 
+                                            <option>Executive Education</option>
+                                            <option>External Relations</option>
+                                            <option>Flores MBA Program</option>
+                                            <option>Information Technology Group</option>
+                                            <option>Office of Advancement</option>
+                                            <option>Office of Business Student Success</option>
+                                            <option>Office of the Dean</option>
+                                            <option>Professional Sales Institute</option>
+                                            <option>Stephenson Entrepreneurship Institute</option>
+                                        </select>
+                                        <span asp-validation-for="@Model.EmployeesMisc[i].Title" class="text-danger"></span>
+                                    </div>
 
-                            <div class="col">
-                                <input asp-for="@Model.EmployeesMisc[0].RN" class="form-control" placeholder="Room Number" />
-                                <span asp-validation-for="@Model.EmployeesMisc[0].RN" class="text-danger"></span>
-                            </div>
-                        </div>
+                                    <div class="col">
+                                        <input asp-for="@Model.EmployeesMisc[0].RN" class="form-control" placeholder="Room Number" />
+                                        <span asp-validation-for="@Model.EmployeesMisc[0].RN" class="text-danger"></span>
+                                    </div>
+                                </div>
                             }
 
                         </div>

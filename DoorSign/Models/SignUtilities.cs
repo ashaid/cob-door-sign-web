@@ -256,10 +256,11 @@ namespace DoorSign.Models
         {
             string templateName = "";
             string name = "";
-            if (miscList[0].Title == null)
+            if (!(miscList[0].Title == null))
             {
                 templateName = "/wwwroot/template/Misc/Department_Sign_Working.docx";
                 name = FindDepartment(miscList[0].Department) + "_Misc.docx";
+                WordReplace("Department", FindDepartment(miscList[0].Department), name);
 
             }
             else
@@ -295,7 +296,7 @@ namespace DoorSign.Models
                 count--;
             }
 
-            WordReplace("Department", FindDepartment(miscList[0].Department), name);
+            
             return name;
         }
     }

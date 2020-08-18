@@ -247,6 +247,7 @@ namespace DoorSign.Models
 
             WordReplace("RText", miscList[0].RText, name);
             WordReplace("Heading", miscList[0].Heading, name);
+            WordReplace("Department", FindDepartment(miscList[0].Department), name);
             WordReplace("RoomNumber", miscList[0].RoomNumber.ToString(), name);
 
             return name;

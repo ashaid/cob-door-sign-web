@@ -14,14 +14,8 @@
 <div class="collapse" id="collapseInfo">
     <p>
         <ul class="list-unstyled">
-            <li>...</li>
-            <li>...</li>
-            <li>
-                ...
-                <ul>
-                    <li>...</li>
-                </ul>
-            </li>
+            <li>Select a department from the drop-down list.</li>
+            <li>Enter a heading and add any additional text in Text field (optional).</li>
             <li>Select create to create a word document.</li>
             <li>If no changes are needed, print the document and cut the door sign to fit the office door bracket.</li>
         </ul>
@@ -43,18 +37,51 @@
         <form asp-action="SavePersonMisc">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-row">
-                <div class="col-2">
 
+
+                <div class="col">
+                    @Html.DropDownListFor(
+        model => model.EmployeesMisc[0].Department,
+        new SelectList(
+            new List<Object>
+            {
+                new { value = 0 , text = "Center for Internal Auditing" },
+                new { value = 1 , text = "Department of Accounting" },
+                new { value = 2 , text = "Department of Economics" },
+                new { value = 3 , text = "Department of Finance" },
+                new { value = 4 , text = "Department of Marketing" },
+                new { value = 5 , text = "Department of Public Administration" },
+                new { value = 6 , text = "Economics & Policy Research Group" },
+                new { value = 7 , text = "Executive Education" },
+                new { value = 8 , text = "External Relations" },
+                new { value = 9 , text = "Flores MBA Program" },
+                new { value = 10 , text = "Information Technology Group" },
+                new { value = 11 , text = "Office of Advancement" },
+                new { value = 12 , text = "Office of Business Student Success" },
+                new { value = 13 , text = "Office of Research & Graduate Programs" },
+                new { value = 14 , text = "Office of the Dean" },
+                new { value = 15 , text = "Professional Sales Institute" },
+                new { value = 16 , text = "Real Estate Research Institute" },
+                new { value = 17 , text = "Rucks Department of Management" },
+                new { value = 18 , text = "Stephenson Department of Entrepreneurship & Information Systems" },
+                new { value = 19 , text = "Stephenson Entrepreneurship Institute" }
+            },
+            "value",
+            "text",
+            Model.EmployeesMisc[0].Department
+        )
+    )
+                    <span asp-validation-for="@Model.EmployeesMisc[0].Department" class="text-danger"></span>
+                        <input asp-for="@Model.EmployeesMisc[0].RoomNumber" class="form-control" placeholder="Room Number" />
+                        <span asp-validation-for="@Model.EmployeesMisc[0].RoomNumber" class="text-danger"></span>
+
+                    <input asp-for="@Model.EmployeesMisc[0].Heading" class="form-control" placeholder="Heading" />
+                    <span asp-validation-for="@Model.EmployeesMisc[0].Heading" class="text-danger"></span>
+
+                    <input asp-for="@Model.EmployeesMisc[0].RText" class="form-control" placeholder="Text (optional)" />
+                    <span asp-validation-for="@Model.EmployeesMisc[0].RText" class="text-danger"></span>
                 </div>
 
-                <input asp-for="@Model.EmployeesMisc[0].RoomNumber" class="form-control" placeholder="Room Number" />
-                <span asp-validation-for="@Model.EmployeesMisc[0].RoomNumber" class="text-danger"></span>
-
-                <input asp-for="@Model.EmployeesMisc[0].Heading" class="form-control" placeholder="Heading" />
-                <span asp-validation-for="@Model.EmployeesMisc[0].Heading" class="text-danger"></span>
-
-                <input asp-for="@Model.EmployeesMisc[0].RText" class="form-control" placeholder="Text" />
-                <span asp-validation-for="@Model.EmployeesMisc[0].RText" class="text-danger"></span>
 
             </div>
             <br />

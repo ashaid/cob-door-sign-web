@@ -13,6 +13,8 @@
     outline-color: #414141;
     color: #414141;
 }
+
+
 .btn-custom {
     color: white;
     background-color: #461D7C;
@@ -20,7 +22,7 @@
 }
 
 
-    .btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .open > .dropdown-toggle.btn-custom {
+    .btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .open > .dropdown-toggle.btn-custom, .btn-custom:focus{
         color: white;
         background-color: #461D7C;
         border-color: #FDD023;

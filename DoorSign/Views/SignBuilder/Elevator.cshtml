@@ -1,0 +1,133 @@
+﻿@model DoorSign.Models.TemplateModelMisc
+
+@{
+    ViewData["Title"] = "Office Door Sign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadSection {
+    <script src="~/js/elevator.js" asp-append-version="true"></script>
+}
+<h1>Misc Sign</h1>
+<a class="btn btn-custom5" data-toggle="collapse" href="#collapseInfo" role="button" aria-expanded="false" aria-controls="Displays office templates">
+    Read Instructions
+</a>
+<div class="collapse" id="collapseInfo">
+    <p>
+        <ul class="list-unstyled">
+            <li>...</li>
+            <li>...</li>
+            <li>
+                ...
+                <ul>
+                    <li>...</li>
+                </ul>
+            </li>
+            <li>Select create to create a word document.</li>
+            <li>If no changes are needed, print the document and cut the door sign to fit the office door bracket.</li>
+        </ul>
+        <a class="btn btn-custom5" data-toggle="collapse" href="#collapseImage" role="button" aria-expanded="false" aria-controls="Displays cubicle templates">
+            Display templates
+        </a>
+    </p>
+</div>
+<div class="collapse" id="collapseImage">
+    <div class="card card-body" style="background-color: #414141">
+        <div class="small">
+            <img src="@Url.Content("~/template/previews/elevator.jpg")" class="img-thumbnail" alt="Misc sign" />
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div>
+        <p>Select department and room number</p>
+        <form asp-action="SavePersonDepartment">
+            <div asp-validation-summary="ModelOnly" class="text-danger">Select department and room number</div>
+            <div class="form-row">
+                @Html.DropDownListFor(
+                        model => model.EmployeesMisc[0].Department,
+                        new SelectList(
+                            new List<Object>
+                            {
+                                new { value = 0 , text = "Center for Internal Auditing" },
+                                new { value = 1 , text = "Department of Accounting" },
+                                new { value = 2 , text = "Department of Economics" },
+                                new { value = 3 , text = "Department of Finance" },
+                                new { value = 4 , text = "Department of Marketing" },
+                                new { value = 5 , text = "Department of Public Administration" },
+                                new { value = 6 , text = "Economics & Policy Research Group" },
+                                new { value = 7 , text = "Executive Education" },
+                                new { value = 8 , text = "External Relations" },
+                                new { value = 9 , text = "Flores MBA Program" },
+                                new { value = 10 , text = "Information Technology Group" },
+                                new { value = 11 , text = "Office of Advancement" },
+                                new { value = 12 , text = "Office of Business Student Success" },
+                                new { value = 13 , text = "Office of Research & Graduate Programs" },
+                                new { value = 14 , text = "Office of the Dean" },
+                                new { value = 15 , text = "Professional Sales Institute" },
+                                new { value = 16 , text = "Real Estate Research Institute" },
+                                new { value = 17 , text = "Rucks Department of Management" },
+                                new { value = 18 , text = "Stephenson Department of Entrepreneurship & Information Systems" },
+                                new { value = 19 , text = "Stephenson Entrepreneurship Institute" }
+                            },
+                            "value",
+                            "text",
+                            Model.EmployeesMisc[0].Department
+                        )
+                    )
+
+                <span asp-validation-for="@Model.EmployeesMisc[0].Department" class="text-danger"></span>
+
+
+
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Employee Information</div>
+                    <div class="panel-body">
+
+                        <div id="EmployeeSection">
+                            <button type="button" id="AddPerson" class="btn btn-custom2 btn-lg">ADD</button>
+                            <button type="button" id="RemovePerson" class="btn btn-custom3 btn-lg">REMOVE</button>
+                            <br />
+                            &nbsp;
+                            @for (var i = 0; i < Model.EmployeesMisc.Count; i++)
+                            {
+                        <div class="row @i">
+                            <div class="col">
+                                <input asp-for="@Model.EmployeesMisc[i].FirstName" class="form-control" placeholder="First Name" />
+                                <span asp-validation-for="@Model.EmployeesMisc[i].FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <input asp-for="@Model.EmployeesMisc[i].LastName" class="form-control" placeholder="Last Name" />
+                                <span asp-validation-for="@Model.EmployeesMisc[i].LastName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col">
+                                <input asp-for="@Model.EmployeesMisc[i].Title" class="form-control" placeholder="Title"/>
+                                <span asp-validation-for="@Model.EmployeesMisc[i].Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="col">
+                                <input asp-for="@Model.EmployeesMisc[0].RN" class="form-control" placeholder="Room Number" />
+                                <span asp-validation-for="@Model.EmployeesMisc[0].RN" class="text-danger"></span>
+                            </div>
+                        </div>
+                            }
+
+                        </div>
+                        <input type="hidden" id="totalEmployees" name="totalEmployees" value="@Model.EmployeesMisc.Count" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            &nbsp;
+            <div class="form-group row">
+                <input type="submit" value="CREATE" class="btn btn-custom btn-lg btn-block" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+

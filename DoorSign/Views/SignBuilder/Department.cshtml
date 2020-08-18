@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section HeadSection {
-    <script src="~/js/Misc.js" asp-append-version="true"></script>
+    <script src="~/js/misc.js" asp-append-version="true"></script>
 }
 <h1>Misc Sign</h1>
 <a class="btn btn-custom5" data-toggle="collapse" href="#collapseInfo" role="button" aria-expanded="false" aria-controls="Displays office templates">
@@ -33,7 +33,7 @@
 <div class="collapse" id="collapseImage">
     <div class="card card-body" style="background-color: #414141">
         <div class="small">
-            <img src="@Url.Content("~/template/previews/misc.jpg")" class="img-thumbnail" alt="Misc sign" />
+            <img src="@Url.Content("~/template/previews/department.jpg")" class="img-thumbnail" alt="Misc sign" />
         </div>
     </div>
 </div>
@@ -41,7 +41,7 @@
 <div class="row">
     <div>
         <p>Select department and room number</p>
-        <form asp-action="SavePersonElevator">
+        <form asp-action="SavePersonDepartment">
             <div asp-validation-summary="ModelOnly" class="text-danger">Select department and room number</div>
             <div class="form-row">
                 @Html.DropDownListFor(

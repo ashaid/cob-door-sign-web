@@ -8,10 +8,23 @@
     </div>
     <h1>E. J. Ourso Business Education Complex</h1>
     <p>Please use this application to create an office door or cubicle sign.</p>
-    <a class="btn-lg btn-custom" asp-action="Office" asp-controller="SignBuilder" asp-route-numEmployees="1">OFFICE</a>
-    <a class="btn-lg btn-custom" asp-action="Cubicle" asp-controller="SignBuilder" asp-route-numEmployees="1">CUBICLE</a>
-    <a class="btn-lg btn-custom" asp-action="Misc" asp-controller="SignBuilder" asp-route-numEmployees="1">MISC</a>
-    <a class="btn-lg btn-custom" asp-action="Misc2" asp-controller="SignBuilder" asp-route-numEmployees="1">MISC2</a>
+    <div class="btn-group" role="group" aria-label="button group">
+        
+        <a class="btn-lg btn-custom" asp-action="Office" asp-controller="SignBuilder" asp-route-numEmployees="1">OFFICE</a>
+        <a class="btn-lg btn-custom" asp-action="Cubicle" asp-controller="SignBuilder" asp-route-numEmployees="1">CUBICLE</a>
+        <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn-lg btn-custom dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                MISC
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" asp-action="Misc" asp-controller="SignBuilder" asp-route-numEmployees="1" style="color:black">BLANK</a>
+                <a class="dropdown-item" asp-action="Misc2" asp-controller="SignBuilder" asp-route-numEmployees="1" style="color:black">DEPARTMENT</a>
+                <a class="dropdown-item" asp-action="Misc3" asp-controller="SignBuilder" asp-route-numEmployees="1" style="color:black">ELEVATOR</a>
+            </div>
+        </div>
+    </div>
+    
+    
     <br />
     &nbsp;
     <p class="align-text-bottom">This tool was created by External Relations. If you have any questions please email us at oursowebmaster@lsu.edu</p>

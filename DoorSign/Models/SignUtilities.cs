@@ -251,11 +251,23 @@ namespace DoorSign.Models
 
             return name;
         }
-        public string CreateSignElevator(List<PersonMisc> miscList)
+        public string CreateSignDepartment(List<PersonMisc> miscList)
         {
+            string templateName = "";
+            string name = "";
+            if (miscList[0].Title == null)
+            {
+                templateName = "/wwwroot/template/Misc/Department_Sign_Working.docx";
+                name = FindDepartment(miscList[0].Department) + "_Misc.docx";
 
-            string templateName = "/wwwroot/template/Misc/Department_Sign_Working.docx";
-            string name = FindDepartment(miscList[0].Department) + "_Misc.docx";
+            }
+            else
+            {
+                templateName = "/wwwroot/template/Misc/Elevator_Sign_Working.docx";
+                name = "Elevator_Misc.docx";
+            }
+                
+
 
             string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
             CloneDocumentTemplate(path, name);
@@ -268,12 +280,14 @@ namespace DoorSign.Models
                 {
                     WordReplace(count + "First", miscList[count - 1].FirstName, name);
                     WordReplace(count + "Last", miscList[count - 1].LastName, name);
+                    WordReplace(count + "Title", miscList[count - 1].Title, name);
                     WordReplace(count + "RN", miscList[count - 1].RN.ToString(), name);
                 }
                 else
                 {
                     WordReplace("First" + count, miscList[count - 1].FirstName, name);
                     WordReplace("Last" + count, miscList[count - 1].LastName, name);
+                    WordReplace("Title" + count, miscList[count - 1].Title, name);
                     WordReplace("RN" + count, miscList[count - 1].RN.ToString(), name);
                 }
 

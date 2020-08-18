@@ -64,6 +64,7 @@ namespace DoorSign.Controllers
             }
             return View("Misc", templateModel);
         }
+        [HttpGet]
         public ViewResult Misc2(int? numEmployees)
         {
             TemplateModelMisc templateModel = new TemplateModelMisc();
@@ -74,7 +75,20 @@ namespace DoorSign.Controllers
                 templateModel.AddEmployeeMisc(p);
                 numEmployees -= 1;
             }
-            return View("ElevatorDepartment", templateModel);
+            return View("Department", templateModel);
+        }
+        [HttpGet]
+        public ViewResult Misc3(int? numEmployees)
+        {
+            TemplateModelMisc templateModel = new TemplateModelMisc();
+
+            while (numEmployees > 0)
+            {
+                PersonMisc p = new PersonMisc();
+                templateModel.AddEmployeeMisc(p);
+                numEmployees -= 1;
+            }
+            return View("Elevator", templateModel);
         }
 
         [HttpPost]
@@ -158,7 +172,8 @@ namespace DoorSign.Controllers
                 return View("Misc", templateModel);
             }
         }
-        public ViewResult SavePersonElevator(TemplateModelMisc templateModel)
+        [HttpPost]
+        public ViewResult SavePersonDepartment(TemplateModelMisc templateModel)
         {
 
             if (ModelState.IsValid)
@@ -166,7 +181,7 @@ namespace DoorSign.Controllers
                 SignUtilities util = new SignUtilities(host);
                 try
                 {
-                    string fileName = util.CreateSignElevator(templateModel.EmployeesMisc);
+                    string fileName = util.CreateSignDepartment(templateModel.EmployeesMisc);
                     TempData["GeneratedFile"] = fileName;
                 }
                 catch
@@ -179,7 +194,32 @@ namespace DoorSign.Controllers
             else
             {
                 ModelState.AddModelError("", "Please correct the highlighted error below.");
-                return View("ElevatorDepartment", templateModel);
+                return View("Department", templateModel);
+            }
+        }
+        [HttpPost]
+        public ViewResult SavePersonElevator(TemplateModelMisc templateModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                SignUtilities util = new SignUtilities(host);
+                try
+                {
+                    string fileName = util.CreateSignDepartment(templateModel.EmployeesMisc);
+                    TempData["GeneratedFile"] = fileName;
+                }
+                catch
+                {
+
+                }
+
+                return View("Results");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please correct the highlighted error below.");
+                return View("Elevator", templateModel);
             }
         }
     }

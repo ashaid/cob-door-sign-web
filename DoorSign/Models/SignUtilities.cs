@@ -256,23 +256,29 @@ namespace DoorSign.Models
         {
             string templateName = "";
             string name = "";
+            string path = "";
             if (!(miscList[0].Title == null))
             {
-                templateName = "/wwwroot/template/Misc/Department_Sign_Working.docx";
-                name = FindDepartment(miscList[0].Department) + "_Misc.docx";
-                WordReplace("Department", FindDepartment(miscList[0].Department), name);
+                templateName = "/wwwroot/template/Misc/Elevator_Sign_Working.docx";
+                name = "Elevator_Misc.docx";
+
+                WordReplace("Department", miscList[0].Department, name);
 
             }
             else
             {
-                templateName = "/wwwroot/template/Misc/Elevator_Sign_Working.docx";
-                name = "Elevator_Misc.docx";
+                templateName = "/wwwroot/template/Misc/Department_Sign_Working.docx";
+                name = FindDepartment(miscList[0].Department) + "_Misc.docx";
+                path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
+                CloneDocumentTemplate(path, name);
+                WordReplace("Department", FindDepartment(miscList[0].Department), name);
+
             }
                 
 
 
-            string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
-            CloneDocumentTemplate(path, name);
+            
+            
 
             int count = miscList.Count;
             foreach (PersonMisc person in miscList)

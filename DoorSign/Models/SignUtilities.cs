@@ -22,7 +22,7 @@ namespace DoorSign.Models
         }
         void WordReplace(string find, string replace, string newDocument)
         {
-
+            // I copied this straight off of stackoverflow and it barely works lol
             string path = host.ContentRootFileProvider.GetFileInfo("/wwwroot/template/built/").PhysicalPath;
             using WordprocessingDocument doc =
                     WordprocessingDocument.Open(path + newDocument, true);
@@ -34,15 +34,12 @@ namespace DoorSign.Models
                     if (text.Text.Contains(find))
                     {
                         text.Text = text.Text.Replace(find, replace);
-                        Console.WriteLine("found: " + find);
-                        Console.WriteLine("replaced with: " + replace);
                     }
                 }
 
             }
 
         }
-
 
         void CloneDocumentTemplate(string templateName, string name)
         {
@@ -59,6 +56,8 @@ namespace DoorSign.Models
 
         string FindDepartment (string DepartmentNumber)
         {
+            // because I am bad at implementing dropdown logic I needed a way to retrieve the string version of the number so this
+            // is my best attemtp
             string s = "";
             switch (DepartmentNumber)
             {
@@ -167,7 +166,7 @@ namespace DoorSign.Models
         {
 
             string templateName = FindTemplateOffice(personList);
-            string name = personList[0].FirstName + "_" + personList[0].RoomNumber.ToString() + "_Office.docx";
+            string name = personList[0].FirstName + "_" + personList[0].RoomNumber.ToString() + "_"+ FindDepartment(personList[0].Department) + "_Office.docx";
 
             string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
             CloneDocumentTemplate(path, name);
@@ -205,14 +204,14 @@ namespace DoorSign.Models
                     templateName = "/wwwroot/template/Cubicles/Cubicle_Three_People_Template.docx";
                     break;
             }
-            string name = personList[0].FirstName + "_" + personList[0].RoomNumber.ToString() + "_Cubicle.docx";
+            string name = personList[0].FirstName + "_" + personList[0].RoomNumber.ToString() + "_" + FindDepartment(personList[0].Department) +"_Cubicle.docx";
             string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
             CloneDocumentTemplate(path, name);
 
             int count = personList.Count;
             foreach (PersonCubicle person in personList)
             {
-                Console.WriteLine(count);
+                // basically the word replace function breaks if for example it was First10. my workaround is 10First. this is the logic to handle that
                 if (count > 9)
                 {
                     WordReplace(count + "First", personList[count - 1].FirstName, name);
@@ -275,15 +274,10 @@ namespace DoorSign.Models
 
             }
                 
-
-
-            
-            
-
             int count = miscList.Count;
             foreach (PersonMisc person in miscList)
             {
-                Console.WriteLine(count);
+                // same logic in cubicle
                 if (count > 9)
                 {
                     WordReplace(count + "First", miscList[count - 1].FirstName, name);

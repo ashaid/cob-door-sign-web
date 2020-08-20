@@ -53,6 +53,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-row">
+                @*Same implementation as office department select*@
                 @Html.DropDownListFor(
                         model => model.EmployeesCubicle[0].Department,
                         new SelectList(
@@ -97,6 +98,7 @@
 
                 <div class="panel panel-default">
                     <div class="form-group">
+                        @*There is supposed to be an option for three but I legit cannot get the tempalte to work. It will not replace the words ¯\_(ツ)_/¯*@
                         <label asp-for="@Model.EmployeesCubicle[0].CubeType" class="control-label"># of people on one sign</label>
                         @Html.RadioButtonFor(m => m.EmployeesCubicle[0].CubeType, "One")
                         One

@@ -58,6 +58,8 @@
                                         <span asp-validation-for="@Model.EmployeesMisc[i].LastName" class="text-danger"></span>
                                     </div>
 
+                                    @*Different implementation, I only needed a few and since I learned a little bit of javascript I decided to do the same
+                                    implemenation in the elevator.js in the views. Still not the best way*@
                                     <div class="col">
                                         <select asp-for="@Model.EmployeesMisc[i].Title" class="form-control" placeholder="Unit" type="list">
                                             <option value="" disabled selected>Unit</option>

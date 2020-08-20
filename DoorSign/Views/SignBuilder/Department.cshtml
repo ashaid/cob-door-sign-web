@@ -39,6 +39,7 @@
         <form asp-action="SavePersonDepartment">
             <div asp-validation-summary="ModelOnly" class="text-danger">Select department and room number</div>
             <div class="form-row">
+                @*Same implementation as offive view*@
                 @Html.DropDownListFor(
                         model => model.EmployeesMisc[0].Department,
                         new SelectList(

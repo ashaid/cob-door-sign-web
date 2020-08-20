@@ -64,6 +64,9 @@
         <form asp-action="SavePersonOffice">
             <div asp-validation-summary="ModelOnly" class="text-danger">Select department and room number</div>
             <div class="form-row">
+                @*I am going to be honest I tried implementing this through enum, dictionary, and other methods but was unssucesful. Here is the spaghetti 
+                code of implementation for this department dropdown select, I reuse this throughout the application. I know you are not supposed to store
+                logic on views views pages but I honestly could not get it to work lol.*@
                 @Html.DropDownListFor(
                         model => model.EmployeesOffice[0].Department,
                         new SelectList(

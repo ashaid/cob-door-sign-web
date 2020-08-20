@@ -167,7 +167,7 @@ namespace DoorSign.Models
         {
 
             string templateName = FindTemplateOffice(personList);
-            string name = personList[0].RoomNumber.ToString() + "_Office.docx";
+            string name = personList[0].FirstName + "_" + personList[0].RoomNumber.ToString() + "_Office.docx";
 
             string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
             CloneDocumentTemplate(path, name);
@@ -205,7 +205,7 @@ namespace DoorSign.Models
                     templateName = "/wwwroot/template/Cubicles/Cubicle_Three_People_Template.docx";
                     break;
             }
-            string name = personList[0].RoomNumber.ToString() + "_Cubicle.docx";
+            string name = personList[0].FirstName + "_" + personList[0].RoomNumber.ToString() + "_Cubicle.docx";
             string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
             CloneDocumentTemplate(path, name);
 
@@ -240,7 +240,7 @@ namespace DoorSign.Models
         {
 
             string templateName = "/wwwroot/template/Misc/Misc.docx";
-            string name = miscList[0].RoomNumber.ToString() + "_Misc.docx";
+            string name = miscList[0].Heading + "_" + miscList[0].RoomNumber.ToString() + "_Misc.docx";
 
             string path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
             CloneDocumentTemplate(path, name);
@@ -260,7 +260,7 @@ namespace DoorSign.Models
             if (!(miscList[0].Title == null))
             {
                 templateName = "/wwwroot/template/Misc/Elevator_Sign_Working.docx";
-                name = "Elevator_Misc.docx";
+                name = miscList[0].FirstName + "_" + "Elevator_Misc.docx";
 
                 WordReplace("Department", miscList[0].Department, name);
 
@@ -268,7 +268,7 @@ namespace DoorSign.Models
             else
             {
                 templateName = "/wwwroot/template/Misc/Department_Sign_Working.docx";
-                name = FindDepartment(miscList[0].Department) + "_Misc.docx";
+                name = miscList[0].FirstName + "_" + FindDepartment(miscList[0].Department) + "_Misc.docx";
                 path = host.ContentRootFileProvider.GetFileInfo(templateName).PhysicalPath;
                 CloneDocumentTemplate(path, name);
                 WordReplace("Department", FindDepartment(miscList[0].Department), name);

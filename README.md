@@ -1,5 +1,6 @@
 # cob-door-sign-web
-web based door sign application
+This application was created to streamline the E. J. Ourso Business College signage creation.
+The user enters the designated info and is returned a word document to be printed and displayed.
 
 To view this application VPN into LSU's network and visit bus-web01.lsu.edu.
 
